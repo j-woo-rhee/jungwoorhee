@@ -1,0 +1,155 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+
+# Your rule content
+
+- You can @ files here
+- You can use markdown but dont have to
+# Personal Website PRD for Jungwoo Rhee
+
+## Overview
+This document outlines the requirements for Jungwoo Rhee's personal website, which will serve as a professional portfolio showcasing her work as an HCI Researcher with a focus on creativity support tools and XR interfaces.
+
+## Goals
+- Create a clean, minimalist portfolio website that highlights Jungwoo's research, projects, and publications
+- Establish a professional online presence for academic and industry networking
+- Provide easy access to Jungwoo's resume, publications, and contact information
+- Showcase selected projects with visual examples
+
+## Target Audience
+- Academic researchers and potential collaborators
+- Industry professionals in HCI and XR
+- Conference organizers and program committees
+- Potential employers or graduate programs
+
+## File Structure
+jungwoo-portfolio/
+├── index.html                  # Homepage
+├── about.html                  # About page
+├── projects/                   # Projects directory
+│   ├── index.html              # All projects listing page
+│   ├── 23-novel.html           # Individual project page
+│   ├── [other-project].html    # Other project pages
+├── publications.html           # Publications page
+├── news.html                   # News archive page
+├── assets/                     # Static assets
+│   ├── css/                    # CSS files
+│   │   ├── main.css            # Main styles (shared across all pages)
+│   │   ├── components.css      # Reusable component styles
+│   │   ├── projects.css        # Project-specific styles
+│   ├── js/                     # JavaScript files
+│   │   ├── main.js             # Main functionality (shared)
+│   │   ├── components.js       # Reusable component functionality
+│   ├── fonts/                  # Custom fonts (if any)
+│   ├── images/                 # Image assets
+│   │   ├── projects/           # images for each projects
+│   │   ├── ui/                 # UI elements and icons
+│   
+├── .htaccess                   # Server configuration (optional)
+├── robots.txt                  # SEO directives
+├── sitemap.xml                 # Site structure for search engines
+
+## Site Structure
+
+### 1. Header/Navigation
+- Black background with white/gray text
+- Logo/Name: "Jungwoo Rhee" (left-aligned)
+- Main navigation (right-aligned):
+  - About
+  - Projects
+  - Publications
+  - News
+  - LinkedIn→ (external link)
+  - Resume↓ (download link)
+
+### 2. Homepage Sections
+
+#### 2.1 Overview Section
+- Brief professional bio highlighting:
+  - HCI Research focus
+  - Current position (MSc Industrial design at KAIST)
+  - Research interests (creativity support tools, XR interfaces)
+  - Educational background
+  - Last updated date
+
+#### 2.2 Recent News Section
+- Section header with "recent news" and "more→" link
+- Chronological list of recent activities/achievements:
+  - Conference attendance
+  - Publications
+  - Awards or recognitions
+  - Each entry includes date (month/year) and brief description
+
+#### 2.3 Selected Projects Section
+- Section header with "selected Projects" and "more→" link
+- Project cards featuring:
+  - Project category and year
+  - Project title/description
+  - Multiple project images with rounded corners
+  - Black background with white text and subtle borders
+
+### 3. Additional Pages (not shown in mockup but required)
+
+#### 3.1 About Page
+- Extended biography
+- Research interests and methodology
+- Skills and technologies
+- Education and professional experience
+- Personal photo
+
+#### 3.2 Projects Page
+- Comprehensive list of all projects
+- Filtering options by category/type
+- Detailed project descriptions
+- Multiple images per project
+- Links to demos, repositories, or publications
+
+#### 3.3 Publications Page
+- Academic publications listed by year
+- Citation information
+- Links to papers/DOIs
+- Conference/journal information
+
+#### 3.4 News Archive
+- Complete chronological list of news items
+- Filterable by type (conferences, publications, awards)
+
+## Technical Requirements
+- Responsive design (mobile, tablet, desktop)
+- Fast loading times
+- Semantic HTML structure
+- Accessibility compliance
+- Dark theme as primary design
+- Analytics integration
+
+## Design Specifications
+- Color Scheme:
+  - Primary Background: Black (#000000)
+  - Secondary Background: Dark Gray (#0F0F0F)
+  - Primary Text: White (#F6F6F6)
+  - Secondary Text: Light Gray (#838383)
+  - Accent: TBD
+- Typography:
+  - Sans-serif font family
+  - Minimal, clean text styling
+- Layout:
+  - Generous whitespace
+  - Clear visual hierarchy
+  - Consistent margins (200px from edges on desktop)
+
+## Success Metrics
+- Website traffic and engagement
+- Downloads of resume
+- Contact inquiries
+- Citation of publications through website links
+
+## Timeline
+- Design approval: [Date]
+- Development: [Date range]
+- Content population: [Date range]
+- Testing: [Date]
+- Launch: [Date]
+- Quarterly updates for news and projects
