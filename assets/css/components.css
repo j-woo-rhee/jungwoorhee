@@ -1,116 +1,50 @@
-/* Header Styles */
-.header {
-  background-color: var(--primary-bg);
-  padding: 48px 0;
-  width: 100%;
-}
-
-.header-container {
+/* Page Layout — desktop sidebar */
+.page-layout {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  min-height: calc(100vh - 192px);
 }
 
-.logo {
-  font-size: 1rem;
-  font-weight: 500;
-  color: var(--primary-text);
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
-.nav {
+/* Sidebar Nav */
+.sidebar-nav {
+  width: 282px;
+  flex-shrink: 0;
   display: flex;
   gap: 48px;
+  padding-top: 60px;
+  padding-right: 60px;
+  align-items: flex-start;
 }
 
-.nav-item {
-  font-size: 1rem;
-  color: var(--gray-text);
-  transition: color 0.3s ease;
-}
-
-.nav-item:hover {
-  color: var(--primary-text);
-}
-
-.nav-item.active {
-  color: var(--primary-text);
-}
-
-/* Mobile menu */
-.mobile-menu-toggle {
-  display: none;
-  background: none;
-  border: none;
-  color: var(--primary-text);
-  font-size: 1.5rem;
-  cursor: pointer;
-}
-
-/* Footer Styles */
-.footer {
-  background-color: var(--primary-bg);
-  padding: 48px 0;
-  width: 100%;
-}
-
-.footer-text {
-  color: var(--secondary-text);
-  font-size: 0.875rem;
-}
-
-/* Section Styles */
-.section {
-  margin-bottom: 96px;
-}
-
-.section-header {
+/* Headings Section */
+.headings {
+  padding: 60px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  gap: 40px;
+  background-color: var(--primary-bg);
+}
+
+/* Body Sections (news, works) */
+.body-section {
+  padding: 60px;
+  background-color: var(--primary-bg);
+}
+
+.body-section .section-header {
   margin-bottom: 16px;
 }
 
-.section-title {
-  font-size: 1rem;
-  color: var(--secondary-text);
-  font-weight: normal;
-  text-transform: uppercase;
-}
-
-.section-link {
-  font-size: 1rem;
-  color: #353535;
-  transition: color 0.3s ease;
-}
-
-.section-link:hover {
-  color: var(--primary-text);
-}
-
-/* Overview Section */
-.overview {
-  margin-bottom: 24px;
-}
-
-.updated-date {
-  color: var(--secondary-text);
-  font-size: 1rem;
-  margin-bottom: 16px;
-  text-transform: uppercase;
-}
-
-.bio {
-  color: var(--primary-text);
-  font-size: 1rem;
-  line-height: 1.6;
-  max-width: 1520px;
-}
-
-/* News Section */
+/* News List */
 .news-list {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 12px;
 }
 
 .news-item {
@@ -118,39 +52,108 @@
   gap: 16px;
 }
 
-.news-date {
-  flex: 0 0 90px;
-  color: var(--light-gray);
-  font-size: 1rem;
+.news-list .news-item:nth-child(n+6) {
+  display: none;
 }
 
-.news-content {
-  color: var(--light-gray);
-  font-size: 1rem;
+.news-list.expanded .news-item:nth-child(n+6) {
+  display: flex;
 }
 
-/* Responsive styles */
-@media (max-width: 768px) {
-  .nav {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background-color: var(--primary-bg);
+/* Works List */
+.works-list {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  margin-top: 32px;
+}
+
+.work-item {
+  display: flex;
+  gap: 60px;
+}
+
+.work-image {
+  width: 500px;
+  height: auto;
+  flex-shrink: 0;
+}
+
+.work-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Footer */
+.footer {
+  height: 192px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 48px;
+  gap: 10px;
+  background-color: var(--primary-bg);
+}
+
+/* ===== Responsive: Tablet (768–1200px) ===== */
+@media (max-width: 1200px) {
+  .page-layout {
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 100;
   }
-  
-  .nav.active {
-    display: flex;
+
+  .sidebar-nav {
+    width: 100%;
+    padding: 24px 60px;
+    padding-top: 24px;
+    order: -1;
+    justify-content: flex-end;
   }
-  
-  .mobile-menu-toggle {
-    display: block;
-    z-index: 101;
+
+  .headings {
+    padding: 60px;
   }
-} 
+
+  .work-image {
+    width: 400px;
+    height: auto;
+  }
+}
+
+/* ===== Responsive: Mobile (<768px) ===== */
+@media (max-width: 768px) {
+  .sidebar-nav {
+    padding: 24px;
+    gap: 32px;
+  }
+
+  .headings {
+    padding: 32px 24px 40px 24px;
+    gap: 24px;
+  }
+
+  .body-section {
+    padding: 24px;
+  }
+
+  .info-links {
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .work-item {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .work-image {
+    width: 100%;
+    height: auto;
+  }
+
+  .footer {
+    height: auto;
+    padding: 32px 24px;
+  }
+}
