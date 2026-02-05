@@ -71,6 +71,7 @@
 .work-item {
   display: flex;
   gap: 60px;
+  align-items: center;
 }
 
 .work-image {
