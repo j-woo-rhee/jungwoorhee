@@ -1,0 +1,17 @@
+# OS
+.DS_Store
+**/.DS_Store
+
+# Editor / AI tooling
+.cursor/
+.claude/
+.vscode/
+.idea/
+
+# Dev / test artifacts
+.playwright-mcp/
+*.log
+node_modules/
+
+# local backups
+images/portrait-full.jpg

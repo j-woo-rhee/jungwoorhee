@@ -1,137 +1,548 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jungwoo Rhee | HCI Researcher</title>
-  <meta name="description" content="Jungwoo Rhee is an HCI researcher exploring creativity support tools for sensemaking.">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jungwoo Rhee — HCI Researcher</title>
+  <meta name="description" content="Jungwoo Rhee is an HCI researcher exploring creativity support tools for sensemaking — first-year PhD student in Industrial Design at KAIST, advised by Prof. Andrea Bianchi." />
+  <meta name="author" content="Jungwoo Rhee" />
+  <link rel="canonical" href="https://jungwoorhee.com/" />
 
-  <!-- Styles -->
-  <link rel="stylesheet" href="assets/css/fonts.css">
-  <link rel="stylesheet" href="assets/css/main.css">
-  <link rel="stylesheet" href="assets/css/components.css">
+  <!-- favicon (Path /jr) -->
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <meta name="theme-color" content="#F8F8F9" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0E0E10" media="(prefers-color-scheme: dark)" />
 
-  <!-- Google Fonts (fallback) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Open Graph / social cards -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://jungwoorhee.com/" />
+  <meta property="og:title" content="Jungwoo Rhee — HCI Researcher" />
+  <meta property="og:description" content="HCI researcher exploring creativity support tools for sensemaking — first-year PhD student in Industrial Design at KAIST." />
+  <meta property="og:image" content="https://jungwoorhee.com/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Jungwoo Rhee — HCI Researcher" />
+  <meta name="twitter:description" content="HCI researcher exploring creativity support tools for sensemaking — PhD student in Industrial Design at KAIST." />
+  <meta name="twitter:image" content="https://jungwoorhee.com/og.png" />
 
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-C6P752SXVH"></script>
+  <!-- avoid theme flash: set theme before paint -->
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-C6P752SXVH');
+    (function () {
+      try {
+        var saved = localStorage.getItem('theme');
+        var sys = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', saved || sys);
+      } catch (e) {}
+    })();
   </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+
+  <!-- Cloudflare Web Analytics (cookieless, no consent banner needed)
+       TODO: replace YOUR_CLOUDFLARE_TOKEN with the token from
+       Cloudflare dashboard → Web Analytics → add site jungwoorhee.com -->
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon='{"token": "YOUR_CLOUDFLARE_TOKEN"}'></script>
+
+  <!-- structured data: helps Google identify you for name searches -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Jungwoo Rhee",
+    "url": "https://jungwoorhee.com/",
+    "image": "https://jungwoorhee.com/images/portrait.jpg",
+    "jobTitle": "PhD Student, Human-Computer Interaction",
+    "affiliation": {
+      "@type": "CollegeOrUniversity",
+      "name": "KAIST"
+    },
+    "knowsAbout": ["Human-Computer Interaction", "Creativity Support Tools", "Sensemaking", "Industrial Design"],
+    "sameAs": [
+      "https://scholar.google.com/citations?user=NTGZ8FMAAAAJ&hl=en",
+      "https://www.linkedin.com/in/jungwoo-rhee/"
+    ]
+  }
+  </script>
+
+  <style>
+    :root{
+      --bg:#F8F8F9;
+      --ink:#131315;
+      --mut:#6E6E72;
+      --line:#E2E2E5;
+      --line2:#ECECEE;
+      --acc:#2F6BFF;        /* decorative accent: led, cursor, borders */
+      --link:#2456D6;       /* text-link accent, AA on light bg */
+      --hl:#E5ECFF;         /* tagline highlight */
+      --thumb-a:#e4e4e8;
+      --thumb-b:#ededf0;
+      --mono:'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+    }
+    [data-theme="dark"]{
+      --bg:#0E0E10;
+      --ink:#F2F2F4;
+      --mut:#9A9AA0;
+      --line:#2A2A2D;
+      --line2:#202023;
+      --acc:#6F9BFF;
+      --link:#8FB0FF;
+      --hl:#1B2A52;
+      --thumb-a:#26262a;
+      --thumb-b:#1c1c20;
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ margin:0; }
+    body{
+      font-family:var(--mono);
+      background:var(--bg);
+      color:var(--ink);
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+      transition:background .2s ease, color .2s ease;
+    }
+
+    /* skip link */
+    .skip{
+      position:absolute; left:-9999px; top:0;
+      background:var(--ink); color:var(--bg);
+      padding:8px 14px; font-size:12.5px; z-index:10;
+    }
+    .skip:focus{ left:12px; top:12px; }
+
+    a{ color:inherit; }
+    :focus-visible{ outline:2px solid var(--acc); outline-offset:3px; border-radius:2px; }
+
+    .page{
+      max-width:880px;
+      margin:0 auto;
+      padding:56px 56px 80px;
+    }
+
+    /* ---------- utility / theme toggle ---------- */
+    .utility{ display:flex; justify-content:flex-end; margin-bottom:26px; }
+    .theme-switch{
+      width:46px; height:26px; padding:0; cursor:pointer;
+      background:none; border:1.5px solid var(--ink); border-radius:999px;
+      position:relative; display:inline-block; flex-shrink:0;
+      transition:border-color .2s;
+    }
+    .theme-switch .knob{
+      position:absolute; top:50%; left:4px; transform:translateY(-50%);
+      width:16px; height:16px; border-radius:50%;
+      background:var(--ink); transition:left .2s ease;
+    }
+    [data-theme="dark"] .theme-switch .knob{ left:calc(100% - 20px); }
+
+    /* ---------- header ---------- */
+    .masthead{
+      display:grid; grid-template-columns:1fr auto; gap:40px; align-items:start;
+    }
+    .name{
+      font-size:38px; font-weight:700; letter-spacing:-.02em; line-height:1; margin:0 0 18px;
+    }
+    .name .dot{ color:var(--acc); }
+    .tagline{
+      font-size:14.5px; font-weight:400; line-height:1.6; color:var(--ink);
+      margin:0 0 14px; max-width:52ch;
+    }
+    .tagline .hl{ background:linear-gradient(transparent 62%, var(--hl) 62%); padding:0 1px; }
+    .status{
+      display:flex; align-items:center; gap:8px; flex-wrap:wrap;
+      font-size:12.5px; color:var(--mut); margin-bottom:26px;
+    }
+    .status .led{ width:7px; height:7px; border-radius:50%; background:var(--mut); flex-shrink:0; }
+    .status .time{ color:var(--mut); font-variant-numeric:tabular-nums; }
+    .cursor{
+      display:inline-block; width:7px; height:14px; background:var(--ink);
+      margin-left:1px; transform:translateY(2px); animation:blink 1.1s steps(1) infinite;
+    }
+    @keyframes blink{ 50%{ opacity:0; } }
+
+    /* portrait / id card */
+    .idcard{ display:flex; flex-direction:column; align-items:flex-end; gap:7px; }
+    .portrait{
+      width:112px; height:216px; border:1px solid var(--ink);
+      position:relative; overflow:hidden;
+      background:
+        repeating-linear-gradient(135deg, var(--thumb-a) 0 2px, var(--thumb-b) 2px 4px);
+    }
+    .portrait img{ width:100%; height:100%; object-fit:cover; display:block; filter:grayscale(1) contrast(1.05); }
+    .portrait .ph{
+      display:none; position:absolute; inset:0;
+      align-items:flex-end; justify-content:center; padding-bottom:6px;
+      font-size:9.5px; letter-spacing:.06em; color:var(--mut);
+    }
+    .portrait.no-photo img{ display:none; }
+    .portrait.no-photo .ph{ display:flex; }
+    .idcap{ font-size:10px; color:var(--mut); letter-spacing:.04em; display:flex; gap:8px; }
+    .idcap b{ color:var(--ink); font-weight:600; }
+
+    /* ---------- contact row ---------- */
+    .contact{
+      display:flex; flex-wrap:wrap; align-items:center; gap:0;
+      font-size:12.5px;
+      border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+      padding:11px 0; margin:30px 0;
+    }
+    .contact a{
+      text-decoration:none; padding:2px 14px; position:relative; transition:color .15s;
+    }
+    .contact a:first-child{ padding-left:0; }
+    .contact a + a::before{
+      content:""; position:absolute; left:0; top:50%; transform:translateY(-50%);
+      width:1px; height:11px; background:var(--line);
+    }
+    .contact a:hover{ color:var(--link); }
+    .contact a .ar{ color:var(--mut); }
+
+    /* ---------- data readout ---------- */
+    .readout{
+      display:grid; grid-template-columns:auto 1fr; gap:8px 22px;
+      font-size:12.5px; margin-bottom:30px;
+    }
+    .readout dt{ color:var(--mut); letter-spacing:.08em; text-transform:uppercase; font-size:11px; padding-top:1px; }
+    .readout dd{ margin:0; color:var(--ink); }
+    .readout dd a{ color:var(--link); text-decoration:none; }
+    .readout dd a:hover{ text-decoration:underline; }
+
+    .bio{
+      font-size:13.5px; line-height:1.72; color:var(--ink);
+      max-width:70ch; margin:0 0 46px;
+    }
+    .bio a{ color:var(--link); text-decoration:none; }
+    .bio a:hover{ text-decoration:underline; }
+
+    /* ---------- section header ---------- */
+    .sec-head{ display:flex; align-items:center; gap:14px; margin-bottom:6px; }
+    .sec-head h2{ font-size:12px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; margin:0; }
+    .sec-head .rule{ flex:1; height:1px; background:var(--line); }
+    .sec-head .count{ font-size:11px; color:var(--mut); font-variant-numeric:tabular-nums; }
+
+    /* ---------- filter tabs ---------- */
+    .filters{ display:flex; align-items:center; gap:0; margin:16px 0 6px; }
+    .filters button{
+      font-family:var(--mono); font-size:12px; background:none; border:none; cursor:pointer;
+      color:var(--mut); padding:4px 13px; position:relative; transition:color .15s;
+    }
+    .filters button:first-child{ padding-left:0; }
+    .filters button + button::before{
+      content:""; position:absolute; left:0; top:50%; transform:translateY(-50%);
+      width:1px; height:11px; background:var(--line);
+    }
+    .filters button:hover{ color:var(--ink); }
+    .filters button.active{ color:var(--acc); }
+
+    /* ---------- publication rows ---------- */
+    .pubs{ margin-top:14px; }
+    .pub{
+      display:grid; grid-template-columns:66px 1fr auto; gap:20px; align-items:start;
+      padding:18px 0; border-bottom:1px solid var(--line);
+    }
+    .pub:first-child{ border-top:1px solid var(--line); }
+    .thumb{
+      width:66px; height:48px; border:1px solid var(--line); overflow:hidden;
+      background:repeating-linear-gradient(45deg, var(--thumb-a) 0 5px, var(--thumb-b) 5px 10px);
+    }
+    .thumb img{ width:100%; height:100%; object-fit:cover; display:block; filter:grayscale(1); }
+    .pub-main{ min-width:0; }
+    .venue{
+      display:inline-block; font-size:10.5px; font-weight:600; letter-spacing:.06em;
+      border:1px solid var(--line); border-radius:4px; padding:1.5px 7px; margin-bottom:8px;
+    }
+    .venue.oral{ border-color:var(--acc); color:var(--acc); }
+    .ptitle{ font-size:14px; font-weight:500; line-height:1.4; margin:0 0 5px; }
+    .authors{ font-size:12px; color:var(--mut); line-height:1.5; margin:0; }
+    .authors b{ color:var(--ink); font-weight:600; }
+    .pub-act{ display:flex; gap:7px; align-items:center; padding-top:24px; }
+    .pub-act a{
+      font-size:11px; letter-spacing:.03em; color:var(--mut); text-decoration:none;
+      border:1px solid var(--line); border-radius:4px; padding:3px 8px; transition:all .15s; white-space:nowrap;
+    }
+    .pub-act a:hover{ color:var(--ink); border-color:var(--mut); }
+
+    .noresult{ display:none; font-size:12.5px; color:var(--mut); padding:26px 0; }
+    .noresult.show{ display:block; }
+
+    /* ---------- news ---------- */
+    .news{ margin-top:44px; }
+    .news-list{ margin-top:16px; }
+    .news-item{
+      display:grid; grid-template-columns:96px 1fr; gap:20px;
+      padding:11px 0; border-bottom:1px solid var(--line2);
+      font-size:13px; line-height:1.5; align-items:baseline;
+    }
+    .news-item:first-child{ border-top:1px solid var(--line2); }
+    .news-item time{ color:var(--mut); font-variant-numeric:tabular-nums; font-size:12px; }
+    .news-item p{ margin:0; }
+    .news-item p a{ color:var(--link); text-decoration:none; }
+    .news-item p a:hover{ text-decoration:underline; }
+    .news-item .new{ color:var(--acc); font-size:10px; border:1px solid var(--acc); border-radius:3px; padding:0 4px; margin-left:7px; vertical-align:1px; }
+
+    .news-pager{ display:flex; align-items:center; gap:16px; margin-top:18px; font-size:12px; }
+    .news-pager button{
+      font-family:var(--mono); font-size:12px; background:none; border:1px solid var(--line);
+      border-radius:6px; color:var(--mut); cursor:pointer; padding:5px 12px; transition:all .15s;
+    }
+    .news-pager button:hover:not(:disabled){ color:var(--ink); border-color:var(--mut); }
+    .news-pager button:disabled{ opacity:.4; cursor:default; }
+    .news-pager .pageind{ color:var(--mut); font-variant-numeric:tabular-nums; letter-spacing:.06em; }
+    .news-pager .pageind b{ color:var(--ink); font-weight:600; }
+
+    /* ---------- footer ---------- */
+    .foot{
+      margin-top:54px; padding-top:18px; border-top:1px solid var(--line);
+      display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap;
+      font-size:11px; color:var(--mut); letter-spacing:.03em;
+    }
+    .foot .sync{ color:var(--mut); }
+
+    /* ---------- responsive ---------- */
+    @media (max-width:720px){
+      .page{ padding:36px 24px 56px; }
+      .masthead{ grid-template-columns:1fr; gap:24px; }
+      .idcard{ align-items:flex-start; order:-1; }
+    }
+    @media (max-width:520px){
+      .name{ font-size:30px; }
+      .readout{ grid-template-columns:1fr; gap:3px 0; }
+      .readout dt{ padding-top:10px; }
+      .pub{ grid-template-columns:48px 1fr; gap:14px; }
+      .thumb{ width:48px; height:36px; }
+      .pub-act{ grid-column:1 / -1; padding-top:10px; }
+      .news-item{ grid-template-columns:1fr; gap:2px; }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .cursor{ animation:none; }
+      *{ transition:none !important; }
+    }
+  </style>
 </head>
 <body>
-  <div class="page-layout">
-    <main class="main-content">
-      <section class="headings">
-        <p class="bio">Jungwoo Rhee is an HCI researcher exploring creativity support tools for sensemaking, and first-year PhD student in Industrial Design at KAIST, advised by <a href="https://make.kaist.ac.kr/" target="_blank" rel="noopener noreferrer">Prof. Andrea Bianchi.</a></p>
-        <p class="bio">Previously, she received an MSc in Industrial Design from KAIST and a BFA in Spatial Design with a Minor in Software from Kookmin University.</p>
-        <div class="info-links">
-          <a href="mailto:jwoorhee@kaist.ac.kr" class="info-link">jwoorhee@kaist.ac.kr</a>
-          <a href="https://www.linkedin.com/in/jungwoo-rhee/" class="info-link" target="_blank" rel="noopener noreferrer">linkedin&#8594;</a>
-          <a href="files/Resume_JungwooRhee_2026_Feb.pdf" class="info-link" download>resume&#8595;</a>
+  <a class="skip" href="#main">Skip to main content</a>
+
+  <div class="page">
+
+    <div class="utility">
+      <button class="theme-switch" id="theme-toggle" type="button" role="switch" aria-checked="false" aria-label="Dark mode">
+        <span class="knob" aria-hidden="true"></span>
+      </button>
+    </div>
+
+    <!-- masthead -->
+    <header class="masthead">
+      <div>
+        <h1 class="name">Jungwoo Rhee<span class="dot" aria-hidden="true">.</span></h1>
+        <p class="tagline">HCI researcher exploring <span class="hl">creativity support tools for sensemaking</span> — and how interactive systems help people externalize and structure their thinking.</p>
+        <p class="status">
+          <span class="led" aria-hidden="true"></span>
+          <span>Currently: Daejeon, KR</span>
+          <span aria-hidden="true">·</span>
+          <span class="time" id="clock" aria-hidden="true">09:41 KST</span>
+          <span class="cursor" aria-hidden="true"></span>
+        </p>
+      </div>
+      <div class="idcard">
+        <div class="portrait no-photo" id="portrait">
+          <img src="images/portrait.jpg" alt="Portrait of Jungwoo Rhee"
+               onload="document.getElementById('portrait').classList.remove('no-photo')"
+               onerror="this.remove()" />
+          <span class="ph">[ portrait ]</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- contact -->
+    <nav class="contact" aria-label="Contact and profiles">
+      <a href="mailto:jwoorhee@kaist.ac.kr">email</a>
+      <a href="https://scholar.google.com/citations?user=NTGZ8FMAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Google&nbsp;Scholar</a>
+      <a href="https://www.linkedin.com/in/jungwoo-rhee/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href="files/Resume_JungwooRhee_2026_Feb.pdf" download>Resume<span class="ar"> ↓</span></a>
+    </nav>
+
+    <main id="main">
+
+      <!-- data readout -->
+      <dl class="readout">
+        <dt>Role</dt><dd>First-year PhD Student · Industrial Design</dd>
+        <dt>Affiliation</dt><dd>KAIST · Daejeon, KR</dd>
+        <dt>Advisor</dt><dd><a href="https://make.kaist.ac.kr/" target="_blank" rel="noopener noreferrer">Prof. Andrea Bianchi</a></dd>
+        <dt>Focus</dt><dd>Creativity Support Tools · Sensemaking · Human–Computer Interaction</dd>
+      </dl>
+
+      <p class="bio">Hi, I'm Jungwoo. I'm currently a first-year PhD student in Industrial Design (HCI) at KAIST, advised by <a href="https://make.kaist.ac.kr/" target="_blank" rel="noopener noreferrer">Prof. Andrea Bianchi</a>. Before this, I earned an MSc in Industrial Design from KAIST and a BFA in Spatial Design with a Minor in Software from Kookmin University. I'm drawn to building tools that help people think — turning messy, half-formed ideas into something they can see, shape, and make sense of.</p>
+
+      <!-- publications -->
+      <section aria-labelledby="pub-h">
+        <div class="sec-head">
+          <h2 id="pub-h">Publications</h2>
+          <span class="rule" aria-hidden="true"></span>
+          <span class="count" id="pubcount"></span>
+        </div>
+
+        <div class="filters" id="filters" role="group" aria-label="Filter publications">
+          <button class="active" data-filter="all" aria-pressed="true">all</button>
+          <button data-filter="first" aria-pressed="false">first-author</button>
+        </div>
+
+        <div class="pubs" id="pubs"></div>
+        <p class="noresult" id="noresult">// no entries match this filter.</p>
+      </section>
+
+      <!-- news -->
+      <section class="news" aria-labelledby="news-h">
+        <div class="sec-head">
+          <h2 id="news-h">News</h2>
+          <span class="rule" aria-hidden="true"></span>
+          <span class="count" id="newscount"></span>
+        </div>
+        <div class="news-list" id="news-list" aria-live="polite"></div>
+        <div class="news-pager" id="news-pager" role="navigation" aria-label="News pages">
+          <button id="news-prev" type="button">‹ newer</button>
+          <span class="pageind" id="news-pageind"></span>
+          <button id="news-next" type="button">older ›</button>
         </div>
       </section>
 
-      <section class="body-section">
-        <div class="section-header">
-          <h2 class="section-title">Recent News</h2>
-          <a href="#" class="section-more" id="news-toggle">more&#8594;</a>
-        </div>
-        <div class="news-list" id="news-list">
-          <div class="news-item">
-            <span class="news-date">2026 jan</span>
-            <span class="news-content">Papers accepted to CHI 2026: Wire Your Way &amp; Gaze and Speech in Multimodal Human-Computer Interaction.</span>
-          </div>
-          <div class="news-item">
-            <span class="news-date">2025 sep</span>
-            <span class="news-content">Assistant to PC and Student Volunteer for UIST 2025 in Busan, Korea.</span>
-          </div>
-          <div class="news-item">
-            <span class="news-date">2025 sep</span>
-            <span class="news-content">Started PhD student at KAIST in Daejeon, Korea.</span>
-          </div>
-          <div class="news-item">
-            <span class="news-date">2025 apr</span>
-            <span class="news-content">Student Volunteer for CHI 2025 in Yokohama, Japan.</span>
-          </div>
-          <div class="news-item">
-            <span class="news-date">2025 mar</span>
-            <span class="news-content">Workshop paper accepted to CHI 2025: Scaling Distributed Collaboration in Mixed Reality.</span>
-          </div>
-          <div class="news-item">
-            <span class="news-date">2025 feb</span>
-            <span class="news-content">Attending HCI Korea 2025 in Gangwon, Korea.</span>
-          </div>
-          <div class="news-item">
-            <span class="news-date">2024 oct</span>
-            <span class="news-content">Attending UIST 2024 in Pittsburgh, US.</span>
-          </div>
-          <div class="news-item">
-            <span class="news-date">2024 jun</span>
-            <span class="news-content">Defended master's thesis: Supporting designers to create environmentally responsible XR UIs.</span>
-          </div>
-          <div class="news-item">
-            <span class="news-date">2024 jan</span>
-            <span class="news-content">Paper accepted to present at HCI Korea 2024: How designers manage digital assets.</span>
-          </div>
-        </div>
-      </section>
-
-      <section class="body-section">
-        <div class="section-header">
-          <h2 class="section-title">Selected Works</h2>
-          <a href="#" class="section-more">more&#8594;</a>
-        </div>
-        <div class="works-list">
-          <div class="work-item">
-            <div class="work-image-container">
-              <img src="images/chi2026-wireyourway.png" alt="Wire Your Way project" class="work-image">
-            </div>
-            <div class="work-text">
-              <span class="work-venue">CHI 2026</span>
-              <span class="work-title">Wire Your Way: Hardware-Contextualized Guidance and In-situ Tests for Personalized Circuit Prototyping</span>
-              <span class="work-authors">Punn Lertjaturaphat*, <strong>Jungwoo Rhee*</strong>, Jaewon You, Andrea Bianchi.</span>
-            </div>
-          </div>
-          <div class="work-item">
-            <div class="work-image-container">
-              <img src="images/chi2026-gazeandspeech.png" alt="Gaze and Speech project" class="work-image">
-            </div>
-            <div class="work-text">
-              <span class="work-venue">CHI 2026</span>
-              <span class="work-title">Gaze and Speech in Multimodal Human-Computer Interaction: A Scoping Review</span>
-              <span class="work-authors">Anam Ahmad Khan, Florian Weidner, <strong>Jungwoo Rhee</strong>, Yasmeen Abdrabou, Andrea Bianchi, Eduardo Velloso, Hans Gellersen, Joshua Newn.</span>
-            </div>
-          </div>
-        </div>
-      </section>
     </main>
 
-    <nav class="sidebar-nav">
-      <a href="/" class="nav-item active">home</a>
-      <a href="#" class="nav-item">works</a>
-      <a href="files/Resume_JungwooRhee_2026_Feb.pdf" class="nav-item" download>resume&#8595;</a>
-    </nav>
+    <footer class="foot">
+      <span>© 2026 Jungwoo Rhee</span>
+      <span class="sync">last updated 2026.06.15</span>
+    </footer>
+
   </div>
 
+  <!-- site content: edit data/content.js to add publications / news -->
+  <script src="data/content.js"></script>
   <script>
-    document.getElementById('news-toggle').addEventListener('click', function(e) {
-      e.preventDefault();
-      var list = document.getElementById('news-list');
-      list.classList.toggle('expanded');
-      this.textContent = list.classList.contains('expanded') ? 'less\u2190' : 'more\u2192';
-    });
-  </script>
+  /* =========================================================================
+     CONTENT lives in data/content.js (loaded just above).
+     To add a publication or news item, edit that one file — nothing here.
+     ========================================================================= */
 
-  <footer class="footer">
-    <p class="footer-updated">updated feb 05, 2026</p>
-    <p class="footer-copyright">&copy; 2026 jungwoo rhee. all rights reserved</p>
-  </footer>
+  const NEWS_PER_PAGE = 5;
+
+  /* =========================================================================
+     RENDERING — no need to edit below.
+     ========================================================================= */
+
+  // ---- publications ----
+  const pubsEl = document.getElementById('pubs');
+  const noresult = document.getElementById('noresult');
+  const pubcount = document.getElementById('pubcount');
+  let pubFilter = 'all';
+
+  function pad2(n){ return String(n).padStart(2, '0'); }
+
+  function pubActions(p){
+    let links = '';
+    if (p.pdf) links += '<a href="' + p.pdf + '" target="_blank" rel="noopener noreferrer">[PDF]</a>';
+    if (p.doi) links += '<a href="' + p.doi + '" target="_blank" rel="noopener noreferrer">[DOI]</a>';
+    return links ? '<div class="pub-act">' + links + '</div>' : '<div class="pub-act"></div>';
+  }
+
+  function renderPubs(){
+    const list = PUBLICATIONS.filter(p => pubFilter === 'all' ? true : p.firstAuthor);
+    pubsEl.innerHTML = list.map(p =>
+      '<article class="pub">' +
+        '<div class="thumb">' + (p.img ? '<img src="' + p.img + '" alt="" />' : '') + '</div>' +
+        '<div class="pub-main">' +
+          '<span class="venue' + (p.oral ? ' oral' : '') + '">' + p.venue + '</span>' +
+          '<p class="ptitle">' + p.title + '</p>' +
+          '<p class="authors">' + p.authors + '</p>' +
+        '</div>' +
+        pubActions(p) +
+      '</article>'
+    ).join('');
+    noresult.classList.toggle('show', list.length === 0);
+    pubcount.textContent = pad2(list.length) + (pubFilter === 'all' ? ' selected' : ' first-author');
+  }
+
+  document.querySelectorAll('#filters button').forEach(b => {
+    b.addEventListener('click', () => {
+      document.querySelectorAll('#filters button').forEach(x => {
+        x.classList.remove('active'); x.setAttribute('aria-pressed', 'false');
+      });
+      b.classList.add('active'); b.setAttribute('aria-pressed', 'true');
+      pubFilter = b.dataset.filter;
+      renderPubs();
+    });
+  });
+
+  // ---- news + pagination ----
+  const newsListEl = document.getElementById('news-list');
+  const newsCount = document.getElementById('newscount');
+  const pageInd = document.getElementById('news-pageind');
+  const prevBtn = document.getElementById('news-prev');
+  const nextBtn = document.getElementById('news-next');
+  let totalPages = 1;
+  let newsPage = 1;
+
+  function renderNews(){
+    totalPages = Math.max(1, Math.ceil(NEWS.length / NEWS_PER_PAGE));
+    if (newsPage > totalPages) newsPage = totalPages;
+    const start = (newsPage - 1) * NEWS_PER_PAGE;
+    const slice = NEWS.slice(start, start + NEWS_PER_PAGE);
+    newsListEl.innerHTML = slice.map(n =>
+      '<div class="news-item">' +
+        '<time>' + n.date + '</time>' +
+        '<p>' + n.html + (n.isNew ? '<span class="new">NEW</span>' : '') + '</p>' +
+      '</div>'
+    ).join('');
+    pageInd.innerHTML = '<b>' + pad2(newsPage) + '</b> / ' + pad2(totalPages);
+    prevBtn.disabled = newsPage === 1;
+    nextBtn.disabled = newsPage === totalPages;
+    newsCount.textContent = pad2(NEWS.length) + ' entries';
+    // hide pager entirely if it all fits on one page
+    document.getElementById('news-pager').style.display = totalPages === 1 ? 'none' : '';
+  }
+
+  prevBtn.addEventListener('click', () => { if (newsPage > 1){ newsPage--; renderNews(); } });
+  nextBtn.addEventListener('click', () => { if (newsPage < totalPages){ newsPage++; renderNews(); } });
+
+  // ---- live KST clock (decorative, aria-hidden) ----
+  function tickClock(){
+    const now = new Date();
+    const kst = new Date(now.getTime() + now.getTimezoneOffset() * 60000 + 9 * 3600000);
+    document.getElementById('clock').textContent =
+      pad2(kst.getHours()) + ':' + pad2(kst.getMinutes()) + ' KST';
+  }
+
+  // ---- theme toggle ----
+  const toggle = document.getElementById('theme-toggle');
+  function syncToggle(){
+    const dark = document.documentElement.getAttribute('data-theme') === 'dark';
+    toggle.setAttribute('aria-checked', String(dark));
+  }
+  toggle.addEventListener('click', () => {
+    const dark = document.documentElement.getAttribute('data-theme') === 'dark';
+    const next = dark ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    try { localStorage.setItem('theme', next); } catch (e) {}
+    syncToggle();
+  });
+
+  // ---- init ----
+  tickClock();
+  setInterval(tickClock, 1000);
+  syncToggle();
+
+  if (typeof PUBLICATIONS === 'undefined' || typeof NEWS === 'undefined') {
+    pubsEl.innerHTML = '';
+    noresult.textContent = '// content failed to load (data/content.js missing).';
+    noresult.classList.add('show');
+  } else {
+    renderPubs();
+    renderNews();
+  }
+  </script>
 </body>
 </html>
