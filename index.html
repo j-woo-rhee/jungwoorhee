@@ -499,17 +499,18 @@
   let totalPages = 1;
   let newsPage = 1;
 
+  function newsItemHTML(n){
+    return '<div class="news-item">' +
+      '<time>' + n.date + '</time>' +
+      '<p>' + n.html + (n.isNew ? '<span class="new">NEW</span>' : '') + '</p>' +
+    '</div>';
+  }
+
   function renderNews(){
     totalPages = Math.max(1, Math.ceil(NEWS.length / NEWS_PER_PAGE));
     if (newsPage > totalPages) newsPage = totalPages;
     const start = (newsPage - 1) * NEWS_PER_PAGE;
-    const slice = NEWS.slice(start, start + NEWS_PER_PAGE);
-    newsListEl.innerHTML = slice.map(n =>
-      '<div class="news-item">' +
-        '<time>' + n.date + '</time>' +
-        '<p>' + n.html + (n.isNew ? '<span class="new">NEW</span>' : '') + '</p>' +
-      '</div>'
-    ).join('');
+    newsListEl.innerHTML = NEWS.slice(start, start + NEWS_PER_PAGE).map(newsItemHTML).join('');
     pageInd.innerHTML = '<b>' + pad2(newsPage) + '</b> / ' + pad2(totalPages);
     prevBtn.disabled = newsPage === 1;
     nextBtn.disabled = newsPage === totalPages;
@@ -517,6 +518,29 @@
     // hide pager entirely if it all fits on one page
     document.getElementById('news-pager').style.display = totalPages === 1 ? 'none' : '';
   }
+
+  // Reserve the height of the tallest page so the pager never shifts between pages.
+  function setNewsMinHeight(){
+    const prevLive = newsListEl.getAttribute('aria-live');
+    newsListEl.setAttribute('aria-live', 'off');
+    newsListEl.style.minHeight = '';
+    const pages = Math.max(1, Math.ceil(NEWS.length / NEWS_PER_PAGE));
+    let maxH = 0;
+    for (let pg = 1; pg <= pages; pg++){
+      const start = (pg - 1) * NEWS_PER_PAGE;
+      newsListEl.innerHTML = NEWS.slice(start, start + NEWS_PER_PAGE).map(newsItemHTML).join('');
+      if (newsListEl.offsetHeight > maxH) maxH = newsListEl.offsetHeight;
+    }
+    newsListEl.style.minHeight = maxH + 'px';
+    renderNews();
+    if (prevLive) newsListEl.setAttribute('aria-live', prevLive);
+  }
+
+  let newsResizeT;
+  window.addEventListener('resize', function(){
+    clearTimeout(newsResizeT);
+    newsResizeT = setTimeout(setNewsMinHeight, 150);
+  });
 
   prevBtn.addEventListener('click', () => { if (newsPage > 1){ newsPage--; renderNews(); } });
   nextBtn.addEventListener('click', () => { if (newsPage < totalPages){ newsPage++; renderNews(); } });
@@ -561,7 +585,7 @@
     noresult.classList.add('show');
   } else {
     renderPubs();
-    renderNews();
+    setNewsMinHeight();
   }
   </script>
 </body>
