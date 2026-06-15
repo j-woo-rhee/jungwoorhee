@@ -42,6 +42,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
 
   <!-- Cloudflare Web Analytics (cookieless) -->
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
@@ -67,265 +68,6 @@
     ]
   }
   </script>
-
-  <style>
-    :root{
-      --bg:#F8F8F9;
-      --ink:#131315;
-      --mut:#6E6E72;
-      --line:#E2E2E5;
-      --line2:#ECECEE;
-      --acc:#2F6BFF;        /* decorative accent: led, cursor, borders */
-      --link:#2456D6;       /* text-link accent, AA on light bg */
-      --hl:#E5ECFF;         /* tagline highlight */
-      --thumb-a:#e4e4e8;
-      --thumb-b:#ededf0;
-      --mono:'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
-    }
-    [data-theme="dark"]{
-      --bg:#0E0E10;
-      --ink:#F2F2F4;
-      --mut:#9A9AA0;
-      --line:#2A2A2D;
-      --line2:#202023;
-      --acc:#6F9BFF;
-      --link:#8FB0FF;
-      --hl:#1B2A52;
-      --thumb-a:#26262a;
-      --thumb-b:#1c1c20;
-    }
-
-    *{ box-sizing:border-box; }
-    html,body{ margin:0; }
-    body{
-      font-family:var(--mono);
-      background:var(--bg);
-      color:var(--ink);
-      -webkit-font-smoothing:antialiased;
-      text-rendering:optimizeLegibility;
-      transition:background .2s ease, color .2s ease;
-    }
-
-    /* skip link */
-    .skip{
-      position:absolute; left:-9999px; top:0;
-      background:var(--ink); color:var(--bg);
-      padding:8px 14px; font-size:12.5px; z-index:10;
-    }
-    .skip:focus{ left:12px; top:12px; }
-
-    a{ color:inherit; }
-    :focus-visible{ outline:2px solid var(--acc); outline-offset:3px; border-radius:2px; }
-
-    .page{
-      max-width:880px;
-      margin:0 auto;
-      padding:56px 56px 80px;
-    }
-
-    /* ---------- utility / theme toggle ---------- */
-    .utility{ display:flex; justify-content:flex-end; margin-bottom:26px; }
-    .theme-switch{
-      width:46px; height:26px; padding:0; cursor:pointer;
-      background:none; border:1.5px solid var(--ink); border-radius:999px;
-      position:relative; display:inline-block; flex-shrink:0;
-      transition:border-color .2s;
-    }
-    .theme-switch .knob{
-      position:absolute; top:50%; left:4px; transform:translateY(-50%);
-      width:16px; height:16px; border-radius:50%;
-      background:var(--ink); transition:left .2s ease;
-    }
-    [data-theme="dark"] .theme-switch .knob{ left:calc(100% - 20px); }
-
-    /* ---------- header ---------- */
-    .masthead{
-      display:grid; grid-template-columns:1fr auto; gap:40px; align-items:start;
-    }
-    .name{
-      font-size:38px; font-weight:700; letter-spacing:-.02em; line-height:1; margin:0 0 18px;
-    }
-    .name .dot{ color:var(--acc); }
-    .tagline{
-      font-size:14.5px; font-weight:400; line-height:1.6; color:var(--ink);
-      margin:0 0 14px; max-width:52ch;
-    }
-    .tagline .hl{ background:linear-gradient(transparent 62%, var(--hl) 62%); padding:0 1px; }
-    .status{
-      display:flex; align-items:center; gap:8px; flex-wrap:wrap;
-      font-size:12.5px; color:var(--mut); margin-bottom:26px;
-    }
-    .status .led{ width:7px; height:7px; border-radius:50%; background:var(--mut); flex-shrink:0; }
-    .status .time{ color:var(--mut); font-variant-numeric:tabular-nums; }
-    .cursor{
-      display:inline-block; width:7px; height:14px; background:var(--ink);
-      margin-left:1px; transform:translateY(2px); animation:blink 1.1s steps(1) infinite;
-    }
-    @keyframes blink{ 50%{ opacity:0; } }
-
-    /* portrait / id card */
-    .idcard{ display:flex; flex-direction:column; align-items:flex-end; gap:7px; }
-    .portrait{
-      width:112px; height:216px; border:1px solid var(--ink);
-      position:relative; overflow:hidden;
-      background:
-        repeating-linear-gradient(135deg, var(--thumb-a) 0 2px, var(--thumb-b) 2px 4px);
-    }
-    .portrait img{ width:100%; height:100%; object-fit:cover; display:block; filter:grayscale(1) contrast(1.05); }
-    .portrait .ph{
-      display:none; position:absolute; inset:0;
-      align-items:flex-end; justify-content:center; padding-bottom:6px;
-      font-size:9.5px; letter-spacing:.06em; color:var(--mut);
-    }
-    .portrait.no-photo img{ display:none; }
-    .portrait.no-photo .ph{ display:flex; }
-    .idcap{ font-size:10px; color:var(--mut); letter-spacing:.04em; display:flex; gap:8px; }
-    .idcap b{ color:var(--ink); font-weight:600; }
-
-    /* ---------- contact row ---------- */
-    .contact{
-      display:flex; flex-wrap:wrap; align-items:center; gap:0;
-      font-size:12.5px;
-      border-top:1px solid var(--line); border-bottom:1px solid var(--line);
-      padding:11px 0; margin:30px 0;
-    }
-    .contact a{
-      text-decoration:none; padding:2px 14px; position:relative; transition:color .15s;
-    }
-    .contact a:first-child{ padding-left:0; }
-    .contact a + a::before{
-      content:""; position:absolute; left:0; top:50%; transform:translateY(-50%);
-      width:1px; height:11px; background:var(--line);
-    }
-    .contact a:hover{ color:var(--link); }
-    .contact a .ar{ color:var(--mut); }
-
-    /* ---------- data readout ---------- */
-    .readout{
-      display:grid; grid-template-columns:auto 1fr; gap:8px 22px;
-      font-size:12.5px; margin-bottom:30px;
-    }
-    .readout dt{ color:var(--mut); letter-spacing:.08em; text-transform:uppercase; font-size:11px; padding-top:1px; }
-    .readout dd{ margin:0; color:var(--ink); }
-    .readout dd a{ color:var(--link); text-decoration:none; }
-    .readout dd a:hover{ text-decoration:underline; }
-
-    .bio{
-      font-size:13.5px; line-height:1.72; color:var(--ink);
-      max-width:70ch; margin:0 0 46px;
-    }
-    .bio a{ color:var(--link); text-decoration:none; }
-    .bio a:hover{ text-decoration:underline; }
-
-    /* ---------- section header ---------- */
-    .sec-head{ display:flex; align-items:center; gap:14px; margin-bottom:6px; }
-    .sec-head h2{ font-size:12px; font-weight:600; letter-spacing:.16em; text-transform:uppercase; margin:0; }
-    .sec-head .rule{ flex:1; height:1px; background:var(--line); }
-    .sec-head .count{ font-size:11px; color:var(--mut); font-variant-numeric:tabular-nums; }
-
-    /* ---------- filter tabs ---------- */
-    .filters{ display:flex; align-items:center; gap:0; margin:16px 0 6px; }
-    .filters button{
-      font-family:var(--mono); font-size:12px; background:none; border:none; cursor:pointer;
-      color:var(--mut); padding:4px 13px; position:relative; transition:color .15s;
-    }
-    .filters button:first-child{ padding-left:0; }
-    .filters button + button::before{
-      content:""; position:absolute; left:0; top:50%; transform:translateY(-50%);
-      width:1px; height:11px; background:var(--line);
-    }
-    .filters button:hover{ color:var(--ink); }
-    .filters button.active{ color:var(--acc); }
-
-    /* ---------- publication rows ---------- */
-    .pubs{ margin-top:14px; }
-    .pub{
-      display:grid; grid-template-columns:66px 1fr auto; gap:20px; align-items:start;
-      padding:18px 0; border-bottom:1px solid var(--line);
-    }
-    .pub:first-child{ border-top:1px solid var(--line); }
-    .thumb{
-      width:66px; height:48px; border:1px solid var(--line); overflow:hidden;
-      background:repeating-linear-gradient(45deg, var(--thumb-a) 0 5px, var(--thumb-b) 5px 10px);
-    }
-    .thumb img{ width:100%; height:100%; object-fit:cover; display:block; filter:grayscale(1); }
-    .pub-main{ min-width:0; }
-    .venue{
-      display:inline-block; vertical-align:top; font-size:10.5px; font-weight:600; letter-spacing:.06em;
-      border:1px solid var(--line); border-radius:4px; padding:1.5px 7px; margin-bottom:8px;
-    }
-    .venue.oral{ border-color:var(--acc); color:var(--acc); }
-    .award{
-      display:inline-block; vertical-align:top; font-size:10.5px; font-weight:600; letter-spacing:.06em;
-      background:var(--acc); color:#fff; border:1px solid var(--acc); border-radius:4px;
-      padding:1.5px 7px; margin-left:6px; margin-bottom:8px;
-    }
-    .ptitle{ font-size:14px; font-weight:500; line-height:1.4; margin:0 0 5px; }
-    .authors{ font-size:12px; color:var(--mut); line-height:1.5; margin:0; }
-    .authors b{ color:var(--ink); font-weight:600; }
-    .pub-act{ display:flex; gap:7px; align-items:center; padding-top:24px; }
-    .pub-act a{
-      font-size:11px; letter-spacing:.03em; color:var(--mut); text-decoration:none;
-      border:1px solid var(--line); border-radius:4px; padding:3px 8px; transition:all .15s; white-space:nowrap;
-    }
-    .pub-act a:hover{ color:var(--ink); border-color:var(--mut); }
-
-    .noresult{ display:none; font-size:12.5px; color:var(--mut); padding:26px 0; }
-    .noresult.show{ display:block; }
-
-    /* ---------- news ---------- */
-    .news{ margin-top:44px; }
-    .news-list{ margin-top:16px; }
-    .news-item{
-      display:grid; grid-template-columns:96px 1fr; gap:20px;
-      padding:11px 0; border-bottom:1px solid var(--line2);
-      font-size:13px; line-height:1.5; align-items:baseline;
-    }
-    .news-item:first-child{ border-top:1px solid var(--line2); }
-    .news-item time{ color:var(--mut); font-variant-numeric:tabular-nums; font-size:12px; }
-    .news-item p{ margin:0; }
-    .news-item p a{ color:var(--link); text-decoration:none; }
-    .news-item p a:hover{ text-decoration:underline; }
-    .news-item .new{ color:var(--acc); font-size:10px; border:1px solid var(--acc); border-radius:3px; padding:0 4px; margin-left:7px; vertical-align:1px; }
-
-    .news-pager{ display:flex; align-items:center; gap:16px; margin-top:18px; font-size:12px; }
-    .news-pager button{
-      font-family:var(--mono); font-size:12px; background:none; border:1px solid var(--line);
-      border-radius:6px; color:var(--mut); cursor:pointer; padding:5px 12px; transition:all .15s;
-    }
-    .news-pager button:hover:not(:disabled){ color:var(--ink); border-color:var(--mut); }
-    .news-pager button:disabled{ opacity:.4; cursor:default; }
-    .news-pager .pageind{ color:var(--mut); font-variant-numeric:tabular-nums; letter-spacing:.06em; }
-    .news-pager .pageind b{ color:var(--ink); font-weight:600; }
-
-    /* ---------- footer ---------- */
-    .foot{
-      margin-top:54px; padding-top:18px; border-top:1px solid var(--line);
-      display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap;
-      font-size:11px; color:var(--mut); letter-spacing:.03em;
-    }
-    .foot .sync{ color:var(--mut); }
-
-    /* ---------- responsive ---------- */
-    @media (max-width:720px){
-      .page{ padding:36px 24px 56px; }
-      .masthead{ grid-template-columns:1fr; gap:24px; }
-      .idcard{ align-items:flex-start; order:-1; }
-    }
-    @media (max-width:520px){
-      .name{ font-size:30px; }
-      .readout{ grid-template-columns:1fr; gap:3px 0; }
-      .readout dt{ padding-top:10px; }
-      .pub{ grid-template-columns:48px 1fr; gap:14px; }
-      .thumb{ width:48px; height:36px; }
-      .pub-act{ grid-column:1 / -1; padding-top:10px; }
-      .news-item{ grid-template-columns:1fr; gap:2px; }
-    }
-
-    /* The site has only subtle, non-vestibular effects (a slow cursor blink and
-       short colour/position micro-transitions), so they remain even with
-       reduce-motion. Re-add suppression here if any large motion is introduced. */
-  </style>
 </head>
 <body>
   <a class="skip" href="#main">Skip to main content</a>
@@ -342,7 +84,7 @@
     <header class="masthead">
       <div>
         <h1 class="name">Jungwoo Rhee<span class="dot" aria-hidden="true">.</span></h1>
-        <p class="tagline">HCI researcher exploring <span class="hl">creativity support tools for sensemaking</span> — and how interactive systems help people externalize and structure their thinking.</p>
+        <p class="tagline">HCI researcher exploring <span class="hl">creativity support tools for sensemaking</span> — and how <span class="hl">interactive systems help people externalize and structure their thinking</span>.</p>
         <p class="status">
           <span class="led" aria-hidden="true"></span>
           <span>Currently: <span id="loc">Daejeon, KR</span></span>
@@ -364,9 +106,9 @@
     <!-- contact -->
     <nav class="contact" aria-label="Contact and profiles">
       <a href="mailto:jwoorhee@kaist.ac.kr">email</a>
-      <a href="https://scholar.google.com/citations?user=NTGZ8FMAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Google&nbsp;Scholar</a>
-      <a href="https://www.linkedin.com/in/jungwoo-rhee/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-      <a href="files/Resume_JungwooRhee_2026.pdf" download>Resume<span class="ar"> ↓</span></a>
+      <a href="https://scholar.google.com/citations?user=NTGZ8FMAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">google&nbsp;scholar</a>
+      <a href="https://www.linkedin.com/in/jungwoo-rhee/" target="_blank" rel="noopener noreferrer">linkedin</a>
+      <a href="files/Resume_JungwooRhee_2026.pdf" download>resume<span class="ar"> ↓</span></a>
     </nav>
 
     <main id="main">
@@ -379,7 +121,7 @@
         <dt>Focus</dt><dd>Creativity Support Tools · Sensemaking · Human–Computer Interaction</dd>
       </dl>
 
-      <p class="bio">Hi, I'm Jungwoo. I'm currently a first-year PhD student in Industrial Design (HCI) at KAIST, advised by <a href="https://make.kaist.ac.kr/" target="_blank" rel="noopener noreferrer">Prof. Andrea Bianchi</a>. Before this, I earned an MSc in Industrial Design from KAIST and a BFA in Spatial Design with a Minor in Software from Kookmin University. I'm drawn to building tools that help people think — turning messy, half-formed ideas into something they can see, shape, and make sense of.</p>
+      <p class="bio">Hi, I'm Jungwoo. I'm currently a first-year PhD student in Industrial Design (HCI) at KAIST, advised by <a href="https://make.kaist.ac.kr/" target="_blank" rel="noopener noreferrer">Prof. Andrea Bianchi</a>. Before this, I earned an MSc in Industrial Design from KAIST and a BFA in Spatial Design with a Minor in Software from Kookmin University. I'm drawn to building <span class="hl">tools that help people think</span> — turning messy, half-formed ideas into something they can see, shape, and make sense of.</p>
 
       <!-- publications -->
       <section aria-labelledby="pub-h">
@@ -426,167 +168,6 @@
 
   <!-- site content: edit data/content.js to add publications / news -->
   <script src="data/content.js"></script>
-  <script>
-  /* =========================================================================
-     CONTENT lives in data/content.js (loaded just above).
-     To add a publication or news item, edit that one file — nothing here.
-     ========================================================================= */
-
-  const NEWS_PER_PAGE = 5;
-
-  /* =========================================================================
-     RENDERING — no need to edit below.
-     ========================================================================= */
-
-  // ---- publications ----
-  const pubsEl = document.getElementById('pubs');
-  const noresult = document.getElementById('noresult');
-  const pubcount = document.getElementById('pubcount');
-  let pubFilter = 'all';
-  const FILTER_LABELS = { all:'selected', first:'first-author', paper:'papers', pw:'posters & workshops' };
-
-  function pad2(n){ return String(n).padStart(2, '0'); }
-
-  function pubActions(p){
-    let links = '';
-    if (p.pdf) links += '<a href="' + p.pdf + '" target="_blank" rel="noopener noreferrer">[PDF]</a>';
-    if (p.doi) links += '<a href="' + p.doi + '" target="_blank" rel="noopener noreferrer">[DOI]</a>';
-    return links ? '<div class="pub-act">' + links + '</div>' : '<div class="pub-act"></div>';
-  }
-
-  function matchFilter(p){
-    if (pubFilter === 'all') return true;
-    if (pubFilter === 'first') return p.firstAuthor;
-    if (pubFilter === 'pw') return p.type === 'poster' || p.type === 'workshop';
-    return p.type === pubFilter;
-  }
-
-  function renderPubs(){
-    const list = PUBLICATIONS.filter(matchFilter);
-    pubsEl.innerHTML = list.map(p =>
-      '<article class="pub">' +
-        '<div class="thumb">' + (p.img ? '<img src="' + p.img + '" alt="" />' : '') + '</div>' +
-        '<div class="pub-main">' +
-          '<span class="venue' + (p.oral ? ' oral' : '') + '">' + p.venue + '</span>' +
-          (p.award ? '<span class="award">' + p.award + '</span>' : '') +
-          '<p class="ptitle">' + p.title + '</p>' +
-          '<p class="authors">' + p.authors + '</p>' +
-        '</div>' +
-        pubActions(p) +
-      '</article>'
-    ).join('');
-    noresult.classList.toggle('show', list.length === 0);
-    pubcount.textContent = pad2(list.length) + ' ' + (FILTER_LABELS[pubFilter] || 'selected');
-  }
-
-  document.querySelectorAll('#filters button').forEach(b => {
-    b.addEventListener('click', () => {
-      document.querySelectorAll('#filters button').forEach(x => {
-        x.classList.remove('active'); x.setAttribute('aria-pressed', 'false');
-      });
-      b.classList.add('active'); b.setAttribute('aria-pressed', 'true');
-      pubFilter = b.dataset.filter;
-      renderPubs();
-    });
-  });
-
-  // ---- news + pagination ----
-  const newsListEl = document.getElementById('news-list');
-  const newsCount = document.getElementById('newscount');
-  const pageInd = document.getElementById('news-pageind');
-  const prevBtn = document.getElementById('news-prev');
-  const nextBtn = document.getElementById('news-next');
-  let totalPages = 1;
-  let newsPage = 1;
-
-  function newsItemHTML(n){
-    return '<div class="news-item">' +
-      '<time>' + n.date + '</time>' +
-      '<p>' + n.html + (n.isNew ? '<span class="new">NEW</span>' : '') + '</p>' +
-    '</div>';
-  }
-
-  function renderNews(){
-    totalPages = Math.max(1, Math.ceil(NEWS.length / NEWS_PER_PAGE));
-    if (newsPage > totalPages) newsPage = totalPages;
-    const start = (newsPage - 1) * NEWS_PER_PAGE;
-    newsListEl.innerHTML = NEWS.slice(start, start + NEWS_PER_PAGE).map(newsItemHTML).join('');
-    pageInd.innerHTML = '<b>' + pad2(newsPage) + '</b> / ' + pad2(totalPages);
-    prevBtn.disabled = newsPage === 1;
-    nextBtn.disabled = newsPage === totalPages;
-    newsCount.textContent = pad2(NEWS.length) + ' entries';
-    // hide pager entirely if it all fits on one page
-    document.getElementById('news-pager').style.display = totalPages === 1 ? 'none' : '';
-  }
-
-  // Reserve the height of the tallest page so the pager never shifts between pages.
-  function setNewsMinHeight(){
-    const prevLive = newsListEl.getAttribute('aria-live');
-    newsListEl.setAttribute('aria-live', 'off');
-    newsListEl.style.minHeight = '';
-    const pages = Math.max(1, Math.ceil(NEWS.length / NEWS_PER_PAGE));
-    let maxH = 0;
-    for (let pg = 1; pg <= pages; pg++){
-      const start = (pg - 1) * NEWS_PER_PAGE;
-      newsListEl.innerHTML = NEWS.slice(start, start + NEWS_PER_PAGE).map(newsItemHTML).join('');
-      if (newsListEl.offsetHeight > maxH) maxH = newsListEl.offsetHeight;
-    }
-    newsListEl.style.minHeight = maxH + 'px';
-    renderNews();
-    if (prevLive) newsListEl.setAttribute('aria-live', prevLive);
-  }
-
-  let newsResizeT;
-  window.addEventListener('resize', function(){
-    clearTimeout(newsResizeT);
-    newsResizeT = setTimeout(setNewsMinHeight, 150);
-  });
-
-  prevBtn.addEventListener('click', () => { if (newsPage > 1){ newsPage--; renderNews(); } });
-  nextBtn.addEventListener('click', () => { if (newsPage < totalPages){ newsPage++; renderNews(); } });
-
-  // ---- live KST clock (decorative, aria-hidden) ----
-  function tickClock(){
-    const now = new Date();
-    const utc = now.getTime() + now.getTimezoneOffset() * 60000;
-    // Travel: show Stockholm during 2026-06-20 .. 2026-06-25, else Daejeon.
-    const inStockholm = utc >= Date.UTC(2026, 5, 20, 0, 0) && utc < Date.UTC(2026, 5, 26, 0, 0);
-    const loc = inStockholm ? 'Stockholm, SE' : 'Daejeon, KR';
-    const offset = inStockholm ? 2 : 9;          // CEST vs KST
-    const label = inStockholm ? 'CEST' : 'KST';
-    const t = new Date(utc + offset * 3600000);
-    document.getElementById('clock').textContent = pad2(t.getHours()) + ':' + pad2(t.getMinutes()) + ' ' + label;
-    const locEl = document.getElementById('loc');
-    if (locEl) locEl.textContent = loc;
-  }
-
-  // ---- theme toggle ----
-  const toggle = document.getElementById('theme-toggle');
-  function syncToggle(){
-    const dark = document.documentElement.getAttribute('data-theme') === 'dark';
-    toggle.setAttribute('aria-checked', String(dark));
-  }
-  toggle.addEventListener('click', () => {
-    const dark = document.documentElement.getAttribute('data-theme') === 'dark';
-    const next = dark ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', next);
-    try { localStorage.setItem('theme', next); } catch (e) {}
-    syncToggle();
-  });
-
-  // ---- init ----
-  tickClock();
-  setInterval(tickClock, 1000);
-  syncToggle();
-
-  if (typeof PUBLICATIONS === 'undefined' || typeof NEWS === 'undefined') {
-    pubsEl.innerHTML = '';
-    noresult.textContent = '// content failed to load (data/content.js missing).';
-    noresult.classList.add('show');
-  } else {
-    renderPubs();
-    setNewsMinHeight();
-  }
-  </script>
+  <script src="assets/js/app.js"></script>
 </body>
 </html>
