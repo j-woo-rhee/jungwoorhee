@@ -340,7 +340,7 @@
         <p class="tagline">HCI researcher exploring <span class="hl">creativity support tools for sensemaking</span> — and how interactive systems help people externalize and structure their thinking.</p>
         <p class="status">
           <span class="led" aria-hidden="true"></span>
-          <span>Currently: Daejeon, KR</span>
+          <span>Currently: <span id="loc">Daejeon, KR</span></span>
           <span aria-hidden="true">·</span>
           <span class="time" id="clock" aria-hidden="true">09:41 KST</span>
           <span class="cursor" aria-hidden="true"></span>
@@ -386,6 +386,8 @@
 
         <div class="filters" id="filters" role="group" aria-label="Filter publications">
           <button class="active" data-filter="all" aria-pressed="true">all</button>
+          <button data-filter="paper" aria-pressed="false">papers</button>
+          <button data-filter="pw" aria-pressed="false">posters &amp; workshops</button>
           <button data-filter="first" aria-pressed="false">first-author</button>
         </div>
 
@@ -436,6 +438,7 @@
   const noresult = document.getElementById('noresult');
   const pubcount = document.getElementById('pubcount');
   let pubFilter = 'all';
+  const FILTER_LABELS = { all:'selected', first:'first-author', paper:'papers', pw:'posters & workshops' };
 
   function pad2(n){ return String(n).padStart(2, '0'); }
 
@@ -446,8 +449,15 @@
     return links ? '<div class="pub-act">' + links + '</div>' : '<div class="pub-act"></div>';
   }
 
+  function matchFilter(p){
+    if (pubFilter === 'all') return true;
+    if (pubFilter === 'first') return p.firstAuthor;
+    if (pubFilter === 'pw') return p.type === 'poster' || p.type === 'workshop';
+    return p.type === pubFilter;
+  }
+
   function renderPubs(){
-    const list = PUBLICATIONS.filter(p => pubFilter === 'all' ? true : p.firstAuthor);
+    const list = PUBLICATIONS.filter(matchFilter);
     pubsEl.innerHTML = list.map(p =>
       '<article class="pub">' +
         '<div class="thumb">' + (p.img ? '<img src="' + p.img + '" alt="" />' : '') + '</div>' +
@@ -460,7 +470,7 @@
       '</article>'
     ).join('');
     noresult.classList.toggle('show', list.length === 0);
-    pubcount.textContent = pad2(list.length) + (pubFilter === 'all' ? ' selected' : ' first-author');
+    pubcount.textContent = pad2(list.length) + ' ' + (FILTER_LABELS[pubFilter] || 'selected');
   }
 
   document.querySelectorAll('#filters button').forEach(b => {
@@ -508,9 +518,16 @@
   // ---- live KST clock (decorative, aria-hidden) ----
   function tickClock(){
     const now = new Date();
-    const kst = new Date(now.getTime() + now.getTimezoneOffset() * 60000 + 9 * 3600000);
-    document.getElementById('clock').textContent =
-      pad2(kst.getHours()) + ':' + pad2(kst.getMinutes()) + ' KST';
+    const utc = now.getTime() + now.getTimezoneOffset() * 60000;
+    // Travel: show Stockholm during 2026-06-20 .. 2026-06-25, else Daejeon.
+    const inStockholm = utc >= Date.UTC(2026, 5, 20, 0, 0) && utc < Date.UTC(2026, 5, 26, 0, 0);
+    const loc = inStockholm ? 'Stockholm, SE' : 'Daejeon, KR';
+    const offset = inStockholm ? 2 : 9;          // CEST vs KST
+    const label = inStockholm ? 'CEST' : 'KST';
+    const t = new Date(utc + offset * 3600000);
+    document.getElementById('clock').textContent = pad2(t.getHours()) + ':' + pad2(t.getMinutes()) + ' ' + label;
+    const locEl = document.getElementById('loc');
+    if (locEl) locEl.textContent = loc;
   }
 
   // ---- theme toggle ----
