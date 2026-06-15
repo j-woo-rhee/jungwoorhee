@@ -13,7 +13,7 @@
 }
 [data-theme="dark"]{
   --bg:#0E0E10;
-  --ink:#F2F2F4;
+  --ink:#D2D2D7;        /* softened off-white — less glare than pure white */
   --mut:#9A9AA0;
   --line:#2A2A2D;
   --line2:#202023;
