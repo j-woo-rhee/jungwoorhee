@@ -43,11 +43,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
 
-  <!-- Cloudflare Web Analytics (cookieless, no consent banner needed)
-       TODO: replace YOUR_CLOUDFLARE_TOKEN with the token from
-       Cloudflare dashboard → Web Analytics → add site jungwoorhee.com -->
+  <!-- Cloudflare Web Analytics (cookieless) -->
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
-          data-cf-beacon='{"token": "YOUR_CLOUDFLARE_TOKEN"}'></script>
+          data-cf-beacon='{"token": "e5370769bb0b4ffcac86af48cbbba601"}'></script>
 
   <!-- structured data: helps Google identify you for name searches -->
   <script type="application/ld+json">
@@ -319,10 +317,9 @@
       .news-item{ grid-template-columns:1fr; gap:2px; }
     }
 
-    @media (prefers-reduced-motion: reduce){
-      .cursor{ animation:none; }
-      *{ transition:none !important; }
-    }
+    /* The site has only subtle, non-vestibular effects (a slow cursor blink and
+       short colour/position micro-transitions), so they remain even with
+       reduce-motion. Re-add suppression here if any large motion is introduced. */
   </style>
 </head>
 <body>
