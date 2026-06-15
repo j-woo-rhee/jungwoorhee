@@ -26,6 +26,7 @@ const PUBLICATIONS = [
     venue: "CHI 2026",
     type: "paper",
     oral: true,
+    award: "Honorable Mention",
     title: "Wire Your Way: Hardware-Contextualized Guidance and In-situ Tests for Personalized Circuit Prototyping",
     authors: "Punn Lertjaturaphat*, <b>Jungwoo Rhee*</b>, Jaewon You, Andrea Bianchi",
     firstAuthor: true,
@@ -91,6 +92,7 @@ const PUBLICATIONS = [
 
 const NEWS = [
   { date: "2026.06", html: "Visiting <a href='https://www.kth.se/' target='_blank' rel='noopener'>KTH Royal Institute of Technology</a> in Stockholm, Sweden for a workshop on our joint grant project.", isNew: true },
+  { date: "2026.04", html: "<b>Wire Your Way</b> received a Best Paper <b>Honorable Mention</b> (top ~5%) at CHI 2026." },
   { date: "2026.04", html: "Attended CHI 2026 in Barcelona, Spain — presented 2 papers and 1 poster, and joined 1 workshop." },
   { date: "2026.02", html: "Workshop paper accepted to the <a href='https://genuimeetshci.github.io/chi26-workshop/' target='_blank' rel='noopener'>Generative UI workshop</a> at CHI 2026: <a href='https://genuimeetshci.github.io/chi26-workshop/proposals/design_space_genui_qualitative_inquiry_chi26_workshop.pdf' target='_blank' rel='noopener'>Deepening, Redirecting, Expanding</a>." },
   { date: "2026.02", html: "Poster accepted to CHI 2026: <a href='https://doi.org/10.1145/3772363.3798682' target='_blank' rel='noopener'>One Is Not Enough: How People Use Multiple AI Models in Everyday Life</a>." },

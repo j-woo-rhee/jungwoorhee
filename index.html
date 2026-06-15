@@ -255,6 +255,11 @@
       border:1px solid var(--line); border-radius:4px; padding:1.5px 7px; margin-bottom:8px;
     }
     .venue.oral{ border-color:var(--acc); color:var(--acc); }
+    .award{
+      display:inline-block; font-size:10px; font-weight:600; letter-spacing:.04em;
+      background:var(--acc); color:#fff; border-radius:4px;
+      padding:1.5px 7px; margin-left:6px; margin-bottom:8px; vertical-align:top;
+    }
     .ptitle{ font-size:14px; font-weight:500; line-height:1.4; margin:0 0 5px; }
     .authors{ font-size:12px; color:var(--mut); line-height:1.5; margin:0; }
     .authors b{ color:var(--ink); font-weight:600; }
@@ -463,6 +468,7 @@
         '<div class="thumb">' + (p.img ? '<img src="' + p.img + '" alt="" />' : '') + '</div>' +
         '<div class="pub-main">' +
           '<span class="venue' + (p.oral ? ' oral' : '') + '">' + p.venue + '</span>' +
+          (p.award ? '<span class="award">' + p.award + '</span>' : '') +
           '<p class="ptitle">' + p.title + '</p>' +
           '<p class="authors">' + p.authors + '</p>' +
         '</div>' +
