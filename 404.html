@@ -1,48 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page Under Construction | Jungwoo Rhee</title>
-    
-    <!-- Styles -->
-    <link rel="stylesheet" href="/assets/css/fonts.css">
-    <link rel="stylesheet" href="/assets/css/main.css">
-    <link rel="stylesheet" href="/assets/css/components.css">
-    
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-C6P752SXVH"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-C6P752SXVH');
-    </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 — Jungwoo Rhee</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root{ --bg:#F8F8F9; --ink:#131315; --mut:#6E6E72; --acc:#2F6BFF; }
+    @media (prefers-color-scheme: dark){ :root{ --bg:#0E0E10; --ink:#F2F2F4; --mut:#9A9AA0; --acc:#6F9BFF; } }
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; margin:0; }
+    body{
+      background:var(--bg); color:var(--ink);
+      font-family:'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+      display:flex; align-items:center; justify-content:center; padding:24px;
+    }
+    .wrap{ max-width:520px; }
+    .mark{ font-size:30px; font-weight:700; letter-spacing:-.03em; margin:0 0 18px; }
+    .mark .s{ color:var(--acc); }
+    h1{ font-size:15px; font-weight:600; letter-spacing:.02em; margin:0 0 10px; }
+    p{ font-size:13px; line-height:1.6; color:var(--mut); margin:0 0 22px; }
+    a.home{
+      font-size:13px; color:var(--acc); text-decoration:none;
+      border:1px solid var(--acc); border-radius:6px; padding:7px 14px; display:inline-block;
+      transition:background .15s, color .15s;
+    }
+    a.home:hover{ background:var(--acc); color:var(--bg); }
+    :focus-visible{ outline:2px solid var(--acc); outline-offset:3px; }
+  </style>
 </head>
 <body>
-    <!-- Header Placeholder -->
-    <div id="header-placeholder"></div>
-
-    <!-- Main Content -->
-    <main>
-        <section class="section error-section">
-            <div class="container">
-                <div class="error-content">
-                    <h1 class="error-title">Page Under Construction</h1>
-                    <p class="error-message">This page is currently under development. Please visit again later.</p>
-                    <div class="error-actions">
-                        <a href="/" class="primary-button">Go to Homepage</a>
-                        <a href="https://www.linkedin.com/in/jungwoo-rhee/" class="secondary-button">Visit My LinkedIn</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer Placeholder -->
-    <div id="footer-placeholder"></div>
-
-    <!-- Scripts -->
-    <script src="/assets/js/components.js"></script>
+  <main class="wrap">
+    <p class="mark"><span class="s">/</span>jr</p>
+    <h1>404 — page not found</h1>
+    <p>The page you're looking for doesn't exist or may have moved.</p>
+    <a class="home" href="/">← back to home</a>
+  </main>
 </body>
 </html>
