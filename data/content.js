@@ -3,7 +3,10 @@
    Newest entries first. After editing, just redeploy (or refresh locally).
 
    PUBLICATION fields:
-     img        thumbnail path, e.g. "images/mypaper.png" ("" = no thumbnail)
+     img        fallback/original image path, e.g. "images/mypaper.png" ("" = no image)
+     imgThumb   optimized thumbnail image path shown in the list (optional)
+     imgPreview optimized preview image path shown when expanded (optional)
+     imgThumbWidth / imgThumbHeight and imgPreviewWidth / imgPreviewHeight set intrinsic sizes
      venue      e.g. "CHI 2026"
      type       "paper" | "poster" | "workshop"  (drives the filter tabs)
      oral       true = blue venue badge (you gave an oral presentation)
@@ -23,6 +26,12 @@
 const PUBLICATIONS = [
   {
     img: "images/chi2026-wireyourway.png",
+    imgThumb: "images/chi2026-wireyourway-thumb.webp",
+    imgThumbWidth: 160,
+    imgThumbHeight: 52,
+    imgPreview: "images/chi2026-wireyourway-preview.webp",
+    imgPreviewWidth: 640,
+    imgPreviewHeight: 206,
     venue: "CHI 2026",
     type: "paper",
     oral: true,
@@ -36,6 +45,12 @@ const PUBLICATIONS = [
   },
   {
     img: "images/chi2026-gazeandspeech.png",
+    imgThumb: "images/chi2026-gazeandspeech-thumb.webp",
+    imgThumbWidth: 160,
+    imgThumbHeight: 69,
+    imgPreview: "images/chi2026-gazeandspeech-preview.webp",
+    imgPreviewWidth: 640,
+    imgPreviewHeight: 275,
     venue: "CHI 2026",
     type: "paper",
     oral: true,
@@ -48,6 +63,12 @@ const PUBLICATIONS = [
   },
   {
     img: "images/chiea26-oneisnotenough.png",
+    imgThumb: "images/chiea26-oneisnotenough-thumb.webp",
+    imgThumbWidth: 160,
+    imgThumbHeight: 226,
+    imgPreview: "images/chiea26-oneisnotenough-preview.webp",
+    imgPreviewWidth: 640,
+    imgPreviewHeight: 906,
     venue: "CHI 2026 Poster",
     type: "poster",
     oral: true,

@@ -41,15 +41,20 @@ function renderPubs(){
       ? '<button class="ptitle-btn" aria-expanded="false" aria-controls="' + pid + '">' +
           '<span>' + p.title + '</span><span class="exp" aria-hidden="true">+</span></button>'
       : '<p class="ptitle">' + p.title + '</p>';
+    var thumbSrc = p.imgThumb || p.img;
+    var previewSrc = p.imgPreview || p.img;
+    var thumbSize = p.imgThumbWidth && p.imgThumbHeight ? ' width="' + p.imgThumbWidth + '" height="' + p.imgThumbHeight + '"' : '';
+    var previewSize = p.imgPreviewWidth && p.imgPreviewHeight ? ' width="' + p.imgPreviewWidth + '" height="' + p.imgPreviewHeight + '"' : '';
+    var safeTitle = p.title.replace(/"/g, '');
     var panel = has
       ? '<div class="pub-panel" id="' + pid + '" hidden>' +
-          (p.img ? '<img class="pub-big" src="' + p.img + '" alt="Figure from “' + p.title.replace(/"/g, '') + '”" />' : '') +
+          (previewSrc ? '<img class="pub-big" src="' + previewSrc + '" alt="Figure from “' + safeTitle + '”"' + previewSize + ' loading="lazy" decoding="async" />' : '') +
           '<p class="pub-abstract">' + p.abstract + '</p>' +
         '</div>'
       : '';
     return '<div class="pub-entry">' +
       '<article class="pub">' +
-        '<div class="thumb' + (has ? ' clickable' : '') + '">' + (p.img ? '<img src="' + p.img + '" alt="" />' : '') + '</div>' +
+        '<div class="thumb' + (has ? ' clickable' : '') + '">' + (thumbSrc ? '<img src="' + thumbSrc + '" alt=""' + thumbSize + ' loading="lazy" decoding="async" />' : '') + '</div>' +
         '<div class="pub-main">' +
           '<span class="venue' + (p.oral ? ' oral' : '') + '">' + p.venue + '</span>' +
           (p.award ? '<span class="award">' + p.award + '</span>' : '') +
