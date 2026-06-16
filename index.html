@@ -95,9 +95,12 @@
       </div>
       <div class="idcard">
         <div class="portrait no-photo" id="portrait">
-          <img src="images/portrait.jpg" alt="Portrait of Jungwoo Rhee"
-               onload="document.getElementById('portrait').classList.remove('no-photo')"
-               onerror="this.remove()" />
+          <picture>
+            <source srcset="images/portrait-336.webp" type="image/webp" />
+            <img src="images/portrait.jpg" alt="Portrait of Jungwoo Rhee" width="336" height="649" fetchpriority="high" decoding="async"
+                 onload="document.getElementById('portrait').classList.remove('no-photo')"
+                 onerror="this.remove()" />
+          </picture>
           <span class="ph">[ portrait ]</span>
         </div>
       </div>

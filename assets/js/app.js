@@ -183,11 +183,20 @@ tickClock();
 setInterval(tickClock, 1000);
 syncToggle();
 
+function scheduleNewsMinHeight(){
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(setNewsMinHeight, { timeout: 1000 });
+  } else {
+    setTimeout(setNewsMinHeight, 500);
+  }
+}
+
 if (typeof PUBLICATIONS === 'undefined' || typeof NEWS === 'undefined') {
   pubsEl.innerHTML = '';
   noresult.textContent = '// content failed to load (data/content.js missing).';
   noresult.classList.add('show');
 } else {
   renderPubs();
-  setNewsMinHeight();
+  renderNews();
+  scheduleNewsMinHeight();
 }

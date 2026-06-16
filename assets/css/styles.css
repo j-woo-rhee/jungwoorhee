@@ -102,6 +102,7 @@ a{ color:inherit; }
   background:
     repeating-linear-gradient(135deg, var(--thumb-a) 0 2px, var(--thumb-b) 2px 4px);
 }
+.portrait picture{ display:block; width:100%; height:100%; }
 .portrait img{ width:100%; height:100%; object-fit:cover; display:block; filter:grayscale(1) contrast(1.05); }
 .portrait .ph{
   display:none; position:absolute; inset:0;
