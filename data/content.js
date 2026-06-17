@@ -21,6 +21,11 @@
      html   the text; you may include <b>…</b> or
             <a href='…' target='_blank' rel='noopener'>links</a>
      isNew  true to show the blue NEW badge (optional; drop it on old items)
+
+   SERVICE fields:
+     year   "YYYY" or "YYYY–YYYY"
+     role   e.g. "Reviewer", "Student Volunteer"
+     venue  venue or venues; may include links
    ===================================================================== */
 
 const PUBLICATIONS = [
@@ -119,18 +124,24 @@ const PUBLICATIONS = [
 
 const NEWS = [
   { date: "2026.06", html: "Visiting <a href='https://www.kth.se/' target='_blank' rel='noopener'>KTH Royal Institute of Technology</a> in Stockholm, Sweden for a workshop on our joint grant project.", isNew: true },
-  { date: "2026.04", html: "<b>Wire Your Way</b> received a Best Paper <b>Honorable Mention</b> (top ~5%) at CHI 2026." },
-  { date: "2026.04", html: "Attended CHI 2026 in Barcelona, Spain — presented 2 papers and 1 poster, and joined 1 workshop." },
-  { date: "2026.02", html: "Workshop paper accepted to the <a href='https://genuimeetshci.github.io/chi26-workshop/' target='_blank' rel='noopener'>Generative UI workshop</a> at CHI 2026: <a href='https://genuimeetshci.github.io/chi26-workshop/proposals/design_space_genui_qualitative_inquiry_chi26_workshop.pdf' target='_blank' rel='noopener'>Deepening, Redirecting, Expanding</a>." },
-  { date: "2026.02", html: "Poster accepted to CHI 2026: <a href='https://doi.org/10.1145/3772363.3798682' target='_blank' rel='noopener'>One Is Not Enough: How People Use Multiple AI Models in Everyday Life</a>." },
-  { date: "2026.01", html: "Two papers accepted to CHI 2026: <a href='https://doi.org/10.1145/3772318.3791371' target='_blank' rel='noopener'>Wire Your Way</a> &amp; <a href='https://doi.org/10.1145/3772318.3791662' target='_blank' rel='noopener'>Gaze and Speech in Multimodal Human-Computer Interaction</a>." },
+  { date: "2026.04", html: "Awarded Best Paper <b>Honorable Mention</b> (top ~5%) at CHI 2026 for <b>Wire Your Way</b>." },
+  { date: "2026.04", html: "Presented <b>2 papers and a poster</b>, and joined a workshop at CHI 2026: <a href='https://doi.org/10.1145/3772318.3791371' target='_blank' rel='noopener'>Wire Your Way</a>, <a href='https://doi.org/10.1145/3772318.3791662' target='_blank' rel='noopener'>Gaze and Speech in Multimodal Human-Computer Interaction</a>, <a href='https://doi.org/10.1145/3772363.3798682' target='_blank' rel='noopener'>One Is Not Enough</a>, and <a href='https://genuimeetshci.github.io/chi26-workshop/proposals/design_space_genui_qualitative_inquiry_chi26_workshop.pdf' target='_blank' rel='noopener'>Deepening, Redirecting, Expanding</a>." },
+  { date: "2026.02", html: "Workshop paper accepted to the CHI 2026 <a href='https://genuimeetshci.github.io/chi26-workshop/' target='_blank' rel='noopener'>Generative UI</a> workshop: <a href='https://genuimeetshci.github.io/chi26-workshop/proposals/design_space_genui_qualitative_inquiry_chi26_workshop.pdf' target='_blank' rel='noopener'>Deepening, Redirecting, Expanding</a>." },
+  { date: "2026.02", html: "Poster accepted to CHI 2026 Extended Abstracts: <a href='https://doi.org/10.1145/3772363.3798682' target='_blank' rel='noopener'>One Is Not Enough</a>." },
+  { date: "2026.01", html: "<b>2 full papers</b> accepted to CHI 2026: <a href='https://doi.org/10.1145/3772318.3791371' target='_blank' rel='noopener'>Wire Your Way</a> and <a href='https://doi.org/10.1145/3772318.3791662' target='_blank' rel='noopener'>Gaze and Speech in Multimodal Human-Computer Interaction</a>." },
   { date: "2026.01", html: "Attending HCI Korea 2026 in Gangwon, Korea." },
-  { date: "2025.09", html: "Assistant to PC and Student Volunteer for <a href='https://uist.acm.org/2025/organizers/' target='_blank' rel='noopener'>UIST 2025</a> in Busan, Korea." },
   { date: "2025.09", html: "Started my PhD at KAIST in Daejeon, Korea." },
-  { date: "2025.04", html: "Student Volunteer for CHI 2025 in Yokohama, Japan." },
-  { date: "2025.03", html: "Workshop paper accepted to the <a href='https://blendedrealities.jensemil.dk/' target='_blank' rel='noopener'>Scaling Distributed Collaboration in Mixed Reality</a> workshop at CHI 2025: <a href='https://blendedrealities.jensemil.dk/wp-content/uploads/2025/04/CHI_2025_W12_sub10_JungwooRhee.pdf' target='_blank' rel='noopener'>Passive Observation and Asynchronous Feedback to Mitigate Meeting Fatigue</a>." },
-  { date: "2025.02", html: "Attending HCI Korea 2025 in Gangwon, Korea." },
-  { date: "2024.10", html: "Attending UIST 2024 in Pittsburgh, US." },
+  { date: "2025.09", html: "Attended <a href='https://uist.acm.org/2025/organizers/' target='_blank' rel='noopener'>UIST 2025</a> as Assistant to PC and Student Volunteer in Busan, Korea." },
+  { date: "2025.04", html: "Attended <a href='https://programs.sigchi.org/chi/2025/committee/187716' target='_blank' rel='noopener'>CHI 2025</a> as Student Volunteer in Yokohama, Japan." },
+  { date: "2025.03", html: "Workshop paper accepted to the CHI 2025 <a href='https://blendedrealities.jensemil.dk/' target='_blank' rel='noopener'>Scaling Distributed Collaboration in Mixed Reality</a> workshop: <a href='https://blendedrealities.jensemil.dk/wp-content/uploads/2025/04/CHI_2025_W12_sub10_JungwooRhee.pdf' target='_blank' rel='noopener'>Passive Observation and Asynchronous Feedback to Mitigate Meeting Fatigue</a>." },
+  { date: "2025.02", html: "Attended HCI Korea 2025 in Gangwon, Korea." },
+  { date: "2024.10", html: "Attended UIST 2024 in Pittsburgh, US." },
   { date: "2024.06", html: "Defended master's thesis: Supporting designers to create environmentally responsible XR UIs." },
-  { date: "2024.01", html: "Paper presented at HCI Korea 2024: How Professionals Use Visual Asset Management: An Exploration through Interviews." }
+  { date: "2024.01", html: "Presented at HCI Korea 2024: How Professionals Use Visual Asset Management: An Exploration through Interviews." }
+];
+
+const SERVICE = [
+  { year: "2026", role: "Reviewer", venue: "DIS 2026 · IMWUT 2026 · SUI 2026" },
+  { year: "2025", role: "Assistant to PC", venue: "UIST 2025" },
+  { year: "2025", role: "Student Volunteer", venue: "CHI 2025 · UIST 2025" }
 ];

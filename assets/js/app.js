@@ -164,6 +164,23 @@ function tickClock(){
   if (locEl) locEl.textContent = loc;
 }
 
+// ---- academic service ----
+const serviceListEl = document.getElementById('service-list');
+const serviceCount = document.getElementById('servicecount');
+
+function serviceItemHTML(s){
+  return '<div class="service-item">' +
+    '<time>' + s.year + '</time>' +
+    '<p><span>' + s.role + '</span> · ' + s.venue + '</p>' +
+  '</div>';
+}
+
+function renderService(){
+  if (!serviceListEl || !serviceCount || typeof SERVICE === 'undefined') return;
+  serviceListEl.innerHTML = SERVICE.map(serviceItemHTML).join('');
+  serviceCount.textContent = pad2(SERVICE.length) + ' entries';
+}
+
 // ---- theme toggle ----
 const toggle = document.getElementById('theme-toggle');
 function syncToggle(){
@@ -198,5 +215,6 @@ if (typeof PUBLICATIONS === 'undefined' || typeof NEWS === 'undefined') {
 } else {
   renderPubs();
   renderNews();
+  renderService();
   scheduleNewsMinHeight();
 }

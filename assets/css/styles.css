@@ -252,6 +252,21 @@ a{ color:inherit; }
 .news-pager .pageind{ color:var(--mut); font-variant-numeric:tabular-nums; letter-spacing:.06em; }
 .news-pager .pageind b{ color:var(--ink); font-weight:600; }
 
+/* ---------- academic service ---------- */
+.service{ margin-top:44px; }
+.service-list{ margin-top:16px; }
+.service-item{
+  display:grid; grid-template-columns:96px 1fr; gap:20px;
+  padding:11px 0; border-bottom:1px solid var(--line2);
+  font-size:13px; line-height:1.5; align-items:baseline;
+}
+.service-item:first-child{ border-top:1px solid var(--line2); }
+.service-item time{ color:var(--mut); font-variant-numeric:tabular-nums; font-size:12px; }
+.service-item p{ margin:0; }
+.service-item p span{ color:var(--ink); font-weight:600; }
+.service-item p a{ color:var(--link); text-decoration:none; }
+.service-item p a:hover{ text-decoration:underline; }
+
 /* ---------- footer ---------- */
 .foot{
   margin-top:54px; padding-top:18px; border-top:1px solid var(--line);
@@ -274,7 +289,8 @@ a{ color:inherit; }
   .thumb{ width:48px; height:36px; }
   .pub-act{ grid-column:1 / -1; padding-top:10px; }
   .pub-panel{ padding-left:0; }
-  .news-item{ grid-template-columns:1fr; gap:2px; }
+  .news-item,
+  .service-item{ grid-template-columns:1fr; gap:2px; }
 }
 
 /* The site has only subtle, non-vestibular effects (a slow cursor blink and
