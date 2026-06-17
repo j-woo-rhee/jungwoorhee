@@ -1,3 +1,11 @@
+@font-face{
+  font-family:'Commit Mono';
+  src:url('../fonts/commit-mono/CommitMono-Variable.woff2') format('woff2');
+  font-weight:200 700;
+  font-style:normal;
+  font-display:swap;
+}
+
 :root{
   --bg:#F8F8F9;
   --ink:#131315;
@@ -9,7 +17,7 @@
   --hl:rgba(47,107,255,.22);   /* blue phrase highlight */
   --thumb-a:#e4e4e8;
   --thumb-b:#ededf0;
-  --mono:'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  --mono:'Commit Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
 }
 [data-theme="dark"]{
   --bg:#0E0E10;

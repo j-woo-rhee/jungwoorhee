@@ -10,6 +10,7 @@
 
 # Dev / test artifacts
 .playwright-mcp/
+analyticsreport/
 *.log
 node_modules/
 
