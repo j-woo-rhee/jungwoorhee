@@ -123,29 +123,6 @@ function renderNews(){
   document.getElementById('news-pager').style.display = totalPages === 1 ? 'none' : '';
 }
 
-// Reserve the height of the tallest page so the pager never shifts between pages.
-function setNewsMinHeight(){
-  const prevLive = newsListEl.getAttribute('aria-live');
-  newsListEl.setAttribute('aria-live', 'off');
-  newsListEl.style.minHeight = '';
-  const pages = Math.max(1, Math.ceil(NEWS.length / NEWS_PER_PAGE));
-  let maxH = 0;
-  for (let pg = 1; pg <= pages; pg++){
-    const start = (pg - 1) * NEWS_PER_PAGE;
-    newsListEl.innerHTML = NEWS.slice(start, start + NEWS_PER_PAGE).map(newsItemHTML).join('');
-    if (newsListEl.offsetHeight > maxH) maxH = newsListEl.offsetHeight;
-  }
-  newsListEl.style.minHeight = maxH + 'px';
-  renderNews();
-  if (prevLive) newsListEl.setAttribute('aria-live', prevLive);
-}
-
-let newsResizeT;
-window.addEventListener('resize', function(){
-  clearTimeout(newsResizeT);
-  newsResizeT = setTimeout(setNewsMinHeight, 150);
-});
-
 prevBtn.addEventListener('click', () => { if (newsPage > 1){ newsPage--; renderNews(); } });
 nextBtn.addEventListener('click', () => { if (newsPage < totalPages){ newsPage++; renderNews(); } });
 
@@ -200,14 +177,6 @@ tickClock();
 setInterval(tickClock, 1000);
 syncToggle();
 
-function scheduleNewsMinHeight(){
-  if ('requestIdleCallback' in window) {
-    requestIdleCallback(setNewsMinHeight, { timeout: 1000 });
-  } else {
-    setTimeout(setNewsMinHeight, 500);
-  }
-}
-
 if (typeof PUBLICATIONS === 'undefined' || typeof NEWS === 'undefined') {
   pubsEl.innerHTML = '';
   noresult.textContent = '// content failed to load (data/content.js missing).';
@@ -216,5 +185,4 @@ if (typeof PUBLICATIONS === 'undefined' || typeof NEWS === 'undefined') {
   renderPubs();
   renderNews();
   renderService();
-  scheduleNewsMinHeight();
 }
