@@ -23,9 +23,8 @@
      isNew  true to show the blue NEW badge (optional; drop it on old items)
 
    SERVICE fields:
-     year   "YYYY" or "YYYY–YYYY"
      role   e.g. "Reviewer", "Student Volunteer"
-     venue  venue or venues; may include links
+     venue  venues with years, e.g. "CHI 2025 · 2026"; may include links
    ===================================================================== */
 
 const PUBLICATIONS = [
@@ -141,7 +140,7 @@ const NEWS = [
 ];
 
 const SERVICE = [
-  { year: "2026", role: "Reviewer", venue: "DIS 2026 · IMWUT 2026 · SUI 2026" },
-  { year: "2025", role: "Assistant to PC", venue: "UIST 2025" },
-  { year: "2025", role: "Student Volunteer", venue: "CHI 2025 · UIST 2025" }
+  { role: "Reviewer", venue: "DIS 2026 · IMWUT 2026 · SUI 2026 · VRST 2026 · PACM HCI (ISS) 2026" },
+  { role: "Assistant to PC", venue: "UIST 2025" },
+  { role: "Student Volunteer", venue: "CHI 2025 · UIST 2025" }
 ];

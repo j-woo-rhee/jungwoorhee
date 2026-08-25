@@ -256,14 +256,13 @@ a{ color:inherit; }
 .service{ margin-top:44px; }
 .service-list{ margin-top:16px; min-height:126px; }
 .service-item{
-  display:grid; grid-template-columns:96px 1fr; gap:20px;
+  display:grid; grid-template-columns:140px 1fr; gap:20px;
   padding:11px 0; border-bottom:1px solid var(--line2);
   font-size:13px; line-height:1.5; align-items:baseline;
 }
 .service-item:first-child{ border-top:1px solid var(--line2); }
-.service-item time{ color:var(--mut); font-variant-numeric:tabular-nums; font-size:12px; }
-.service-item p{ margin:0; }
-.service-item p span{ color:var(--ink); font-weight:600; }
+.service-item > span{ color:var(--ink); font-weight:600; }
+.service-item p{ margin:0; font-variant-numeric:tabular-nums; }
 .service-item p a{ color:var(--link); text-decoration:none; }
 .service-item p a:hover{ text-decoration:underline; }
 

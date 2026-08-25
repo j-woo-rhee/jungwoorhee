@@ -147,8 +147,8 @@ const serviceCount = document.getElementById('servicecount');
 
 function serviceItemHTML(s){
   return '<div class="service-item">' +
-    '<time>' + s.year + '</time>' +
-    '<p><span>' + s.role + '</span> · ' + s.venue + '</p>' +
+    '<span>' + s.role + '</span>' +
+    '<p>' + s.venue + '</p>' +
   '</div>';
 }
 
