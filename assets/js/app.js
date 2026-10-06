@@ -13,8 +13,8 @@ const NEWS_PER_PAGE = 5;
 const pubsEl = document.getElementById('pubs');
 const noresult = document.getElementById('noresult');
 const pubcount = document.getElementById('pubcount');
-let pubFilter = 'all';
-const FILTER_LABELS = { all:'selected', first:'first-author', paper:'papers', pw:'posters & workshops' };
+let pubFilter = 'selected';
+const FILTER_LABELS = { selected:'selected', all:'total', first:'first-author', paper:'papers', pw:'posters & workshops' };
 
 function pad2(n){ return String(n).padStart(2, '0'); }
 
@@ -27,6 +27,7 @@ function pubActions(p){
 
 function matchFilter(p){
   if (pubFilter === 'all') return true;
+  if (pubFilter === 'selected') return p.selected;
   if (pubFilter === 'first') return p.firstAuthor;
   if (pubFilter === 'pw') return p.type === 'poster' || p.type === 'workshop';
   return p.type === pubFilter;
@@ -158,6 +159,17 @@ function renderService(){
   serviceCount.textContent = pad2(SERVICE.length) + ' entries';
 }
 
+// ---- under review ----
+function renderUnderReview(){
+  const el = document.getElementById('review-list');
+  const cnt = document.getElementById('reviewcount');
+  if (!el || !cnt || typeof UNDER_REVIEW === 'undefined') return;
+  el.innerHTML = UNDER_REVIEW.map(function (r) {
+    return '<div class="service-item"><span>' + r.role + '</span><p>' + r.topic + '</p></div>';
+  }).join('');
+  cnt.textContent = pad2(UNDER_REVIEW.length) + ' entries';
+}
+
 // ---- patents ----
 function renderPatents(){
   const el = document.getElementById('patent-list');
@@ -199,4 +211,5 @@ if (typeof PUBLICATIONS === 'undefined' || typeof NEWS === 'undefined') {
   renderNews();
   renderService();
   renderPatents();
+  renderUnderReview();
 }

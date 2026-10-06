@@ -13,6 +13,7 @@
      title      paper title
      authors    HTML string; wrap your name in <b>…</b> to bold it
      firstAuthor true if you are (co-)first author (used by the filter)
+     selected   true to show under the default "selected" tab
      pdf        URL or "files/mypaper.pdf"  — leave "" to hide the [PDF] button
      doi        DOI URL                     — leave "" to hide the [DOI] button
 
@@ -28,6 +29,10 @@
                (country + number are shown as a badge next to the title)
      title     invention title
      inventors HTML string; wrap your name in <b>…</b>
+
+   UNDER_REVIEW fields (keep titles/venues out while blind review is open):
+     role     "First author" | "Second author" | "Co-author"
+     topic    one-line description of the work
 
    SERVICE fields:
      role   e.g. "Reviewer", "Student Volunteer"
@@ -50,6 +55,7 @@ const PUBLICATIONS = [
     title: "Wire Your Way: Hardware-Contextualized Guidance and In-situ Tests for Personalized Circuit Prototyping",
     abstract: "The increasing popularity of microcontroller platforms like Arduino enables diverse end-user developers to participate in circuit prototyping. Traditionally, follow-along tutorials serve as an essential learning method for makers, and several prior toolkits leveraged this format. However, our formative study (N=12) shows that makers have unique preferences regarding how they construct their circuits and idiosyncratic ways to assess and debug problems, which contrasts with the step-by-step instructional nature of tutorials. To address this mismatch, we present a prototyping platform that supports personalized circuit construction and debugging, using an augmented breadboard that is circuit-aware and supports on-the-fly hardware reconfiguration via contextualized guidance and in-situ circuit validation.",
     authors: "Punn Lertjaturaphat*, <b>Jungwoo Rhee*</b>, Jaewon You, Andrea Bianchi",
+    selected: true,
     firstAuthor: true,
     pdf: "https://dl.acm.org/doi/pdf/10.1145/3772318.3791371",
     doi: "https://doi.org/10.1145/3772318.3791371"
@@ -68,6 +74,7 @@ const PUBLICATIONS = [
     title: "Gaze and Speech in Multimodal Human-Computer Interaction: A Scoping Review",
     abstract: "Multimodal interaction has long promised to make interfaces more intuitive by combining complementary inputs. Among these, gaze and speech form a compelling pairing: gaze provides rapid spatial grounding, while speech conveys rich semantic information. Yet despite decades of exploration, the research remains fragmented. This scoping review examines 103 studies published between 1991 and 2025, organised into explicit (users intentionally provide gaze and speech) and implicit (systems leverage users' natural behaviours) interaction. Across both, we identify recurring ways of combining gaze and speech to resolve ambiguity, ground references, and support adaptivity, and contribute a synthesis to guide future multimodal interface design.",
     authors: "Anam Ahmad Khan, Florian Weidner, <b>Jungwoo Rhee</b>, Yasmeen Abdrabou, Andrea Bianchi, Eduardo Velloso, Hans Gellersen, Joshua Newn",
+    selected: true,
     firstAuthor: false,
     pdf: "https://dl.acm.org/doi/pdf/10.1145/3772318.3791662",
     doi: "https://doi.org/10.1145/3772318.3791662"
@@ -86,6 +93,7 @@ const PUBLICATIONS = [
     title: "One Is Not Enough: How People Use Multiple AI Models in Everyday Life",
     abstract: "People increasingly use multiple Multimodal Large Language Models (MLLMs) concurrently, selecting each based on its perceived strengths. This cross-platform practice creates coordination challenges: adapting prompts to different interfaces, calibrating trust against inconsistent behaviors, and navigating separate conversation histories. Prior HCI research focused on single-agent interactions, leaving multi-MLLM orchestration underexplored. Through a diary study and semi-structured interviews (N=10), we examine how individuals organize work across competing AI systems. We find that users construct shifting primary and secondary hierarchies among models and develop personalized switching patterns triggered by task, effort, latency, and output credibility — insights that inform tools supporting people to coordinate multiple models.",
     authors: "Seunghwa Pyo*, Donggun Lee*, <b>Jungwoo Rhee*</b>, Soobin Park, Youn-kyung Lim",
+    selected: true,
     firstAuthor: true,
     pdf: "https://dl.acm.org/doi/pdf/10.1145/3772363.3798682",
     doi: "https://doi.org/10.1145/3772363.3798682"
@@ -144,6 +152,12 @@ const NEWS = [
   { date: "2024.10", html: "Attended UIST 2024 in Pittsburgh, US." },
   { date: "2024.06", html: "Defended master's thesis: Supporting designers to create environmentally responsible XR UIs." },
   { date: "2024.01", html: "Presented at HCI Korea 2024: How Professionals Use Visual Asset Management: An Exploration through Interviews." }
+];
+
+const UNDER_REVIEW = [
+  { role: "First author", topic: "In-situ authoring and testing of environmentally responsive XR user interfaces (distance, lighting, occlusion)" },
+  { role: "Second author", topic: "Attention-aware code reading support with personalized feedback grounded in expert gaze and code complexity" },
+  { role: "Co-author", topic: "Contact-adaptive haptic interface with co-located thermal and vibrotactile feedback from a single gel membrane" }
 ];
 
 const PATENTS = [

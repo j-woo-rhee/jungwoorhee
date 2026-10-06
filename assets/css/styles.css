@@ -80,7 +80,7 @@ a{ color:inherit; }
 
 /* ---------- header ---------- */
 .masthead{
-  display:grid; grid-template-columns:1fr auto; gap:40px; align-items:start;
+  display:grid; grid-template-columns:1fr auto; gap:40px; align-items:start; margin-bottom:44px;
 }
 .name{
   font-size:38px; font-weight:700; letter-spacing:-.02em; line-height:1; margin:0 0 18px;
@@ -94,7 +94,7 @@ a{ color:inherit; }
 .tagline a:hover{ text-decoration:underline; }
 .status{
   display:flex; align-items:center; gap:8px; flex-wrap:wrap;
-  font-size:12.5px; color:var(--mut); margin-bottom:26px;
+  font-size:12.5px; color:var(--mut); margin-bottom:0;
 }
 .status .led{ width:7px; height:7px; border-radius:50%; background:var(--mut); flex-shrink:0; }
 .status .time{ color:var(--mut); font-variant-numeric:tabular-nums; }
@@ -129,7 +129,7 @@ a{ color:inherit; }
   display:flex; flex-wrap:wrap; align-items:center; gap:0;
   font-size:12.5px;
   border-top:1px solid var(--line); border-bottom:1px solid var(--line);
-  padding:11px 0; margin:30px 0;
+  padding:11px 0; margin:0 0 22px;
 }
 .contact a{
   text-decoration:none; padding:2px 14px; position:relative; transition:color .15s;
@@ -141,16 +141,6 @@ a{ color:inherit; }
 }
 .contact a:hover{ color:var(--link); }
 .contact a .ar{ color:var(--mut); }
-
-/* ---------- data readout ---------- */
-.readout{
-  display:grid; grid-template-columns:auto 1fr; gap:8px 22px;
-  font-size:12.5px; margin-bottom:46px;
-}
-.readout dt{ color:var(--mut); letter-spacing:.08em; text-transform:uppercase; font-size:11px; padding-top:1px; }
-.readout dd{ margin:0; color:var(--ink); }
-.readout dd a{ color:var(--ink); text-decoration:none; border-bottom:1px solid var(--line); }
-.readout dd a:hover{ border-bottom-color:var(--mut); }
 
 
 /* ---------- section header ---------- */
@@ -174,7 +164,7 @@ a{ color:inherit; }
 .filters button.active{ color:var(--acc); }
 
 /* ---------- publication rows ---------- */
-.pubs{ margin-top:14px; min-height:510px; }
+.pubs{ margin-top:14px; min-height:255px; }
 .pub-entry{ border-bottom:1px solid var(--line); }
 .pub-entry:first-child{ border-top:1px solid var(--line); }
 .pub{
@@ -252,7 +242,9 @@ a{ color:inherit; }
 .service{ margin-top:44px; }
 .service-list{ margin-top:16px; min-height:126px; }
 .patent-list{ min-height:0; }
-.patent-list .service-item{ grid-template-columns:1fr; }
+#patent-list .service-item{ grid-template-columns:1fr; }
+#review-list .service-item{ grid-template-columns:96px 1fr; }
+#review-list .service-item > span{ color:var(--mut); font-weight:400; font-size:12px; }
 .patent-list p > b{ display:block; font-weight:600; color:var(--ink); }
 .patent-list .authors{ display:block; margin-top:2px; }
 .patent-list .venue{ display:block; width:fit-content; }
@@ -283,16 +275,15 @@ a{ color:inherit; }
 }
 @media (max-width:520px){
   .name{ font-size:30px; }
-  .readout{ grid-template-columns:1fr; gap:3px 0; }
-  .readout dt{ padding-top:10px; }
   .pub{ grid-template-columns:48px 1fr; gap:14px; }
   .thumb{ width:48px; height:36px; }
-  .pubs{ min-height:620px; }
+  .pubs{ min-height:310px; }
   .news-list{ min-height:410px; }
   .pub-act{ grid-column:1 / -1; padding-top:10px; }
   .pub-panel{ padding-left:0; }
   .news-item,
-  .service-item{ grid-template-columns:1fr; gap:2px; }
+  .service-item,
+  #review-list .service-item{ grid-template-columns:1fr; gap:2px; }
 }
 
 /* The site has only subtle, non-vestibular effects (a slow cursor blink and
