@@ -158,6 +158,19 @@ function renderService(){
   serviceCount.textContent = pad2(SERVICE.length) + ' entries';
 }
 
+// ---- patents ----
+function renderPatents(){
+  const el = document.getElementById('patent-list');
+  const cnt = document.getElementById('patentcount');
+  if (!el || !cnt || typeof PATENTS === 'undefined') return;
+  el.innerHTML = PATENTS.map(function (p) {
+    return '<div class="service-item">' +
+      '<p><span class="venue">' + p.country + ' ' + p.number + '</span><b>' + p.title + '</b><span class="authors">' + p.inventors + '</span></p>' +
+    '</div>';
+  }).join('');
+  cnt.textContent = pad2(PATENTS.length) + ' entries';
+}
+
 // ---- theme toggle ----
 const toggle = document.getElementById('theme-toggle');
 function syncToggle(){
@@ -185,4 +198,5 @@ if (typeof PUBLICATIONS === 'undefined' || typeof NEWS === 'undefined') {
   renderPubs();
   renderNews();
   renderService();
+  renderPatents();
 }

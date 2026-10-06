@@ -251,6 +251,11 @@ a{ color:inherit; }
 /* ---------- academic service ---------- */
 .service{ margin-top:44px; }
 .service-list{ margin-top:16px; min-height:126px; }
+.patent-list{ min-height:0; }
+.patent-list .service-item{ grid-template-columns:1fr; }
+.patent-list p > b{ display:block; font-weight:600; color:var(--ink); }
+.patent-list .authors{ display:block; margin-top:2px; }
+.patent-list .venue{ display:block; width:fit-content; }
 .service-item{
   display:grid; grid-template-columns:140px 1fr; gap:20px;
   padding:11px 0; border-bottom:1px solid var(--line2);

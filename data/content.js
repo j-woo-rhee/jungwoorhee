@@ -22,6 +22,13 @@
             <a href='…' target='_blank' rel='noopener'>links</a>
      isNew  true to show the blue NEW badge (optional; drop it on old items)
 
+   PATENT fields:
+     country   e.g. "KR"
+     number    application/registration number, e.g. "10-2026-0156356"
+               (country + number are shown as a badge next to the title)
+     title     invention title
+     inventors HTML string; wrap your name in <b>…</b>
+
    SERVICE fields:
      role   e.g. "Reviewer", "Student Volunteer"
      venue  venues with years, e.g. "CHI 2025 · 2026"; may include links
@@ -139,8 +146,17 @@ const NEWS = [
   { date: "2024.01", html: "Presented at HCI Korea 2024: How Professionals Use Visual Asset Management: An Exploration through Interviews." }
 ];
 
+const PATENTS = [
+  {
+    country: "KR",
+    number: "10-2026-0156356",
+    title: "System and Method for Supporting Circuit Prototyping Based on Circuit Design Information",
+    inventors: "Andrea Bianchi, <b>Jungwoo Rhee</b>, Punn Lertjaturaphat, Jaewon You"
+  }
+];
+
 const SERVICE = [
-  { role: "Reviewer", venue: "DIS 2026 · IMWUT 2026 · SUI 2026 · VRST 2026 · PACM HCI (ISS) 2026" },
+  { role: "Reviewer", venue: "CHI 2027 · IMWUT 2026 · DIS 2026 · PACM HCI (ISS) 2026 · VRST 2026 · SUI 2026" },
   { role: "Assistant to PC", venue: "UIST 2025" },
   { role: "Student Volunteer", venue: "CHI 2025 · UIST 2025" }
 ];
