@@ -137,7 +137,8 @@ const PUBLICATIONS = [
 ];
 
 const NEWS = [
-  { date: "2026.06", html: "Visiting <a href='https://www.kth.se/' target='_blank' rel='noopener'>KTH Royal Institute of Technology</a> in Stockholm, Sweden for a workshop on our joint grant project.", isNew: true },
+  { date: "2026.09", html: "Co-organized the <a href='https://xr.prototyping.id/' target='_blank' rel='noopener'>NRF-ASPIRE Workshop 2026: Listening Through the Body</a> at KAIST Dogok Campus, Seoul, and served as Web Chair.", isNew: true },
+  { date: "2026.06", html: "Visiting <a href='https://www.kth.se/' target='_blank' rel='noopener'>KTH Royal Institute of Technology</a> in Stockholm, Sweden for a workshop on our joint grant project." },
   { date: "2026.04", html: "Awarded Best Paper <b>Honorable Mention</b> (top ~5%) at CHI 2026 for <b>Wire Your Way</b>." },
   { date: "2026.04", html: "Presented <b>2 papers and a poster</b>, and joined a workshop at CHI 2026: <a href='https://doi.org/10.1145/3772318.3791371' target='_blank' rel='noopener'>Wire Your Way</a>, <a href='https://doi.org/10.1145/3772318.3791662' target='_blank' rel='noopener'>Gaze and Speech in Multimodal Human-Computer Interaction</a>, <a href='https://doi.org/10.1145/3772363.3798682' target='_blank' rel='noopener'>One Is Not Enough</a>, and <a href='https://genuimeetshci.github.io/chi26-workshop/proposals/design_space_genui_qualitative_inquiry_chi26_workshop.pdf' target='_blank' rel='noopener'>Deepening, Redirecting, Expanding</a>." },
   { date: "2026.02", html: "Workshop paper accepted to the CHI 2026 <a href='https://genuimeetshci.github.io/chi26-workshop/' target='_blank' rel='noopener'>Generative UI</a> workshop: <a href='https://genuimeetshci.github.io/chi26-workshop/proposals/design_space_genui_qualitative_inquiry_chi26_workshop.pdf' target='_blank' rel='noopener'>Deepening, Redirecting, Expanding</a>." },
