@@ -147,11 +147,11 @@ const NEWS = [
   { date: "2026.01", html: "Attending HCI Korea 2026 in Gangwon, Korea." },
   { date: "2025.09", html: "Started my PhD at KAIST in Daejeon, Korea." },
   { date: "2025.09", html: "Attended <a href='https://uist.acm.org/2025/organizers/' target='_blank' rel='noopener'>UIST 2025</a> as Assistant to PC and Student Volunteer in Busan, Korea." },
+  { date: "2025.06", html: "Defended master's thesis: Supporting designers to create environmentally responsible XR UIs." },
   { date: "2025.04", html: "Attended <a href='https://programs.sigchi.org/chi/2025/committee/187716' target='_blank' rel='noopener'>CHI 2025</a> as Student Volunteer in Yokohama, Japan." },
   { date: "2025.03", html: "Workshop paper accepted to the CHI 2025 <a href='https://blendedrealities.jensemil.dk/' target='_blank' rel='noopener'>Scaling Distributed Collaboration in Mixed Reality</a> workshop: <a href='https://blendedrealities.jensemil.dk/wp-content/uploads/2025/04/CHI_2025_W12_sub10_JungwooRhee.pdf' target='_blank' rel='noopener'>Passive Observation and Asynchronous Feedback to Mitigate Meeting Fatigue</a>." },
   { date: "2025.02", html: "Attended HCI Korea 2025 in Gangwon, Korea." },
   { date: "2024.10", html: "Attended UIST 2024 in Pittsburgh, US." },
-  { date: "2024.06", html: "Defended master's thesis: Supporting designers to create environmentally responsible XR UIs." },
   { date: "2024.01", html: "Presented at HCI Korea 2024: How Professionals Use Visual Asset Management: An Exploration through Interviews." }
 ];
 
