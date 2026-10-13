@@ -49,7 +49,8 @@ function renderPubs(){
     var safeTitle = p.title.replace(/"/g, '');
     var panel = has
       ? '<div class="pub-panel" id="' + pid + '" hidden>' +
-          (previewSrc ? '<img class="pub-big" src="' + previewSrc + '" alt="Figure from “' + safeTitle + '”"' + previewSize + ' loading="lazy" decoding="async" />' : '') +
+          (previewSrc ? '<img class="pub-big" src="' + previewSrc + '" data-full="' + (p.img || previewSrc) + '" alt="Figure from “' + safeTitle + '”"' + previewSize + ' loading="lazy" decoding="async" tabindex="0" role="button" title="Click to enlarge" />' : '') +
+          (p.note ? '<p class="pub-note">' + p.note + '</p>' : '') +
           '<p class="pub-abstract">' + p.abstract + '</p>' +
         '</div>'
       : '';
@@ -57,7 +58,7 @@ function renderPubs(){
       '<article class="pub">' +
         '<div class="thumb' + (has ? ' clickable' : '') + '">' + (thumbSrc ? '<img src="' + thumbSrc + '" alt=""' + thumbSize + ' loading="lazy" decoding="async" />' : '') + '</div>' +
         '<div class="pub-main">' +
-          '<span class="venue' + (p.oral ? ' oral' : '') + '">' + p.venue + '</span>' +
+          '<span class="venue' + (p.reviewed ? ' reviewed' : '') + '">' + p.venue + '</span>' +
           (p.award ? '<span class="award">' + p.award + '</span>' : '') +
           titleEl +
           '<p class="authors">' + p.authors + '</p>' +
@@ -95,6 +96,24 @@ pubsEl.addEventListener('click', function (e) {
   var exp = toggle.querySelector('.exp'); if (exp) exp.textContent = willOpen ? '−' : '+';
 });
 
+// ---- figure lightbox (native <dialog>) ----
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+function openLightbox(img){
+  lightboxImg.src = img.dataset.full || img.src;
+  lightboxImg.alt = img.alt;
+  lightbox.showModal();
+}
+pubsEl.addEventListener('click', function (e) {
+  var img = e.target.closest('.pub-big');
+  if (img) openLightbox(img);
+});
+pubsEl.addEventListener('keydown', function (e) {
+  if ((e.key === 'Enter' || e.key === ' ') && e.target.classList.contains('pub-big')) { e.preventDefault(); openLightbox(e.target); }
+});
+lightbox.addEventListener('click', function () { lightbox.close(); }); // click anywhere (incl. backdrop) closes; Esc is native
+lightbox.addEventListener('close', function () { lightboxImg.src = ''; });
+
 // ---- news + pagination ----
 const newsListEl = document.getElementById('news-list');
 const newsCount = document.getElementById('newscount');
@@ -131,11 +150,11 @@ nextBtn.addEventListener('click', () => { if (newsPage < totalPages){ newsPage++
 function tickClock(){
   const now = new Date();
   const utc = now.getTime() + now.getTimezoneOffset() * 60000;
-  // Travel: show Stockholm during 2026-06-20 .. 2026-06-25, else Daejeon.
-  const inStockholm = utc >= Date.UTC(2026, 5, 20, 0, 0) && utc < Date.UTC(2026, 5, 26, 0, 0);
-  const loc = inStockholm ? 'Stockholm, SE' : 'Daejeon, KR';
-  const offset = inStockholm ? 2 : 9;          // CEST vs KST
-  const label = inStockholm ? 'CEST' : 'KST';
+  // Travel: show Italy during 2026-11-21 .. 2026-11-27 (ISS 2026), else Daejeon.
+  const inItaly = utc >= Date.UTC(2026, 10, 21, 0, 0) && utc < Date.UTC(2026, 10, 28, 0, 0);
+  const loc = inItaly ? 'Torino & Milano, IT' : 'Daejeon, KR';
+  const offset = inItaly ? 1 : 9;          // CET vs KST
+  const label = inItaly ? 'CET' : 'KST';
   const t = new Date(utc + offset * 3600000);
   document.getElementById('clock').textContent = pad2(t.getHours()) + ':' + pad2(t.getMinutes()) + ' ' + label;
   const locEl = document.getElementById('loc');

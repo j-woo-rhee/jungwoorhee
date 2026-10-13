@@ -181,7 +181,7 @@ a{ color:inherit; }
   display:inline-block; vertical-align:top; font-size:10.5px; font-weight:600; letter-spacing:.06em;
   border:1px solid var(--line); border-radius:4px; padding:1.5px 7px; margin-bottom:8px;
 }
-.venue.oral{ border-color:var(--acc); color:var(--acc); }
+.venue.reviewed{ border-color:var(--acc); color:var(--acc); }
 .award{
   display:inline-block; vertical-align:top; font-size:10.5px; font-weight:600; letter-spacing:.06em;
   background:var(--acc); color:#fff; border:1px solid var(--acc); border-radius:4px;
@@ -199,7 +199,12 @@ a{ color:inherit; }
 .thumb.clickable{ cursor:pointer; }
 .pub-panel{ padding:0 0 18px 86px; }
 .pub-panel[hidden]{ display:none; }
-.pub-big{ display:block; max-width:320px; width:100%; height:auto; border:1px solid var(--line); margin:0 0 12px; }
+.pub-big{ display:block; max-width:320px; width:100%; height:auto; border:1px solid var(--line); margin:0 0 12px; cursor:zoom-in; }
+.pub-big:hover, .pub-big:focus-visible{ border-color:var(--acc); outline:none; }
+.lightbox{ border:none; padding:0; background:transparent; max-width:none; max-height:none; width:100vw; height:100vh; cursor:zoom-out; }
+.lightbox::backdrop{ background:rgba(0,0,0,.82); }
+.lightbox img{ display:block; width:auto; height:auto; max-width:min(96vw, 1800px); max-height:94vh; margin:auto; position:absolute; inset:0; background:var(--bg); border:1px solid var(--line); }
+.pub-note{ font-size:11px; letter-spacing:.04em; color:var(--acc); margin:0 0 8px; }
 .pub-abstract{ font-size:12.5px; line-height:1.62; color:var(--mut); margin:0; max-width:66ch; }
 .authors{ font-size:12px; color:var(--mut); line-height:1.5; margin:0; }
 .authors b{ color:var(--ink); font-weight:600; }

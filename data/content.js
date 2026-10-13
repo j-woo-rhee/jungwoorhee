@@ -9,9 +9,10 @@
      imgThumbWidth / imgThumbHeight and imgPreviewWidth / imgPreviewHeight set intrinsic sizes
      venue      e.g. "CHI 2026"
      type       "paper" | "poster" | "workshop"  (drives the filter tabs)
-     oral       true = blue venue badge (you gave an oral presentation)
+     reviewed   true = blue venue badge (peer-reviewed venue)
      title      paper title
      authors    HTML string; wrap your name in <b>…</b> to bold it
+     note       short line shown above the abstract, e.g. "Preprint coming soon." (optional)
      firstAuthor true if you are (co-)first author (used by the filter)
      selected   true to show under the default "selected" tab
      pdf        URL or "files/mypaper.pdf"  — leave "" to hide the [PDF] button
@@ -41,6 +42,26 @@
 
 const PUBLICATIONS = [
   {
+    img: "images/adaptest.png",
+    imgThumb: "images/adaptest-thumb.webp",
+    imgThumbWidth: 160,
+    imgThumbHeight: 43,
+    imgPreview: "images/adaptest-preview.webp",
+    imgPreviewWidth: 640,
+    imgPreviewHeight: 174,
+    venue: "ISS 2026 (PACM HCI)",
+    type: "paper",
+    reviewed: true,
+    title: "AdapTest: Supporting Designers in Authoring and Evaluating Environmentally Responsive User Interfaces for Extended Reality",
+    note: "Preprint coming soon.",
+    abstract: "Extended Reality (XR) headsets increasingly host familiar 2D user interfaces as windows floating in physical environments. However, their usability depends on environmental conditions that designers cannot fully control. Current design workflows often separate how a variant is designed from how it actually looks in the target environment. We present AdapTest, an in-situ authoring and testing tool that lets designers select interface elements, define when and how they change, compare the resulting variations, and test their activation without coding. Based on prior research and a formative study with 12 interface designers, the system targets three key environmental variables: distance, lighting, and occlusion. We evaluated AdapTest against a desktop design and in-headset preview workflow in a within-subjects study with 12 designers. Compared with the baseline, designers accounted for a wider range of environmental factors, addressed more overlapping conditions, and repeatedly tested and revised their designs in place; there were no significant differences in workload or usability despite longer sessions. Our work contributes an integrated, designer-centered approach to adapting, comparing, and validating environmentally responsive XR user interfaces.",
+    authors: "<b>Jungwoo Rhee</b>, Guhn Lee, Yumin Jung, Mustafa Doga Dogan, Justin Moon, Andrea Bianchi",
+    selected: true,
+    firstAuthor: true,
+    pdf: "",
+    doi: ""
+  },
+  {
     img: "images/chi2026-wireyourway.png",
     imgThumb: "images/chi2026-wireyourway-thumb.webp",
     imgThumbWidth: 160,
@@ -50,7 +71,7 @@ const PUBLICATIONS = [
     imgPreviewHeight: 206,
     venue: "CHI 2026",
     type: "paper",
-    oral: true,
+    reviewed: true,
     award: "Honorable Mention",
     title: "Wire Your Way: Hardware-Contextualized Guidance and In-situ Tests for Personalized Circuit Prototyping",
     abstract: "The increasing popularity of microcontroller platforms like Arduino enables diverse end-user developers to participate in circuit prototyping. Traditionally, follow-along tutorials serve as an essential learning method for makers, and several prior toolkits leveraged this format. However, our formative study (N=12) shows that makers have unique preferences regarding how they construct their circuits and idiosyncratic ways to assess and debug problems, which contrasts with the step-by-step instructional nature of tutorials. To address this mismatch, we present a prototyping platform that supports personalized circuit construction and debugging, using an augmented breadboard that is circuit-aware and supports on-the-fly hardware reconfiguration via contextualized guidance and in-situ circuit validation.",
@@ -70,7 +91,7 @@ const PUBLICATIONS = [
     imgPreviewHeight: 275,
     venue: "CHI 2026",
     type: "paper",
-    oral: true,
+    reviewed: true,
     title: "Gaze and Speech in Multimodal Human-Computer Interaction: A Scoping Review",
     abstract: "Multimodal interaction has long promised to make interfaces more intuitive by combining complementary inputs. Among these, gaze and speech form a compelling pairing: gaze provides rapid spatial grounding, while speech conveys rich semantic information. Yet despite decades of exploration, the research remains fragmented. This scoping review examines 103 studies published between 1991 and 2025, organised into explicit (users intentionally provide gaze and speech) and implicit (systems leverage users' natural behaviours) interaction. Across both, we identify recurring ways of combining gaze and speech to resolve ambiguity, ground references, and support adaptivity, and contribute a synthesis to guide future multimodal interface design.",
     authors: "Anam Ahmad Khan, Florian Weidner, <b>Jungwoo Rhee</b>, Yasmeen Abdrabou, Andrea Bianchi, Eduardo Velloso, Hans Gellersen, Joshua Newn",
@@ -89,7 +110,7 @@ const PUBLICATIONS = [
     imgPreviewHeight: 906,
     venue: "CHI 2026 Poster",
     type: "poster",
-    oral: true,
+    reviewed: true,
     title: "One Is Not Enough: How People Use Multiple AI Models in Everyday Life",
     abstract: "People increasingly use multiple Multimodal Large Language Models (MLLMs) concurrently, selecting each based on its perceived strengths. This cross-platform practice creates coordination challenges: adapting prompts to different interfaces, calibrating trust against inconsistent behaviors, and navigating separate conversation histories. Prior HCI research focused on single-agent interactions, leaving multi-MLLM orchestration underexplored. Through a diary study and semi-structured interviews (N=10), we examine how individuals organize work across competing AI systems. We find that users construct shifting primary and secondary hierarchies among models and develop personalized switching patterns triggered by task, effort, latency, and output credibility — insights that inform tools supporting people to coordinate multiple models.",
     authors: "Seunghwa Pyo*, Donggun Lee*, <b>Jungwoo Rhee*</b>, Soobin Park, Youn-kyung Lim",
@@ -102,7 +123,7 @@ const PUBLICATIONS = [
     img: "",
     venue: "CHI 2026 Workshop",
     type: "workshop",
-    oral: false,
+    reviewed: false,
     title: "Deepening, Redirecting, Expanding: A Design Space for Generative Interfaces with Qualitative Inquiry",
     abstract: "Current AI-mediated interviewing tools support only a narrow subset of the transformations qualitative researchers rely on: many can deepen a topic with follow-up probes, but inside static chat interfaces that resist topic pivots. This position paper argues that generative UI for qualitative research should treat epistemic goal evolution as a first-class design primitive. I characterize three recurring transformation patterns during interviews — deepening, redirecting, and expanding — and propose transformation grammars specifying how an interview interface should reconfigure in response to each. This framing positions genUI as a collaborative thinking environment whose structure co-evolves with the researcher's developing interpretation.",
     authors: "<b>Jungwoo Rhee</b>",
@@ -114,7 +135,7 @@ const PUBLICATIONS = [
     img: "",
     venue: "CHI 2025 Workshop",
     type: "workshop",
-    oral: false,
+    reviewed: false,
     title: "Passive Observation and Asynchronous Feedback to Mitigate Meeting Fatigue",
     abstract: "Recent research suggests incorporating asynchronous elements in MR collaboration, letting participants engage at flexible times to reduce pressure and cognitive strain. This paper proposes a hybrid MR system supporting passive observation and asynchronous feedback: users can quietly observe live VR meetings from non-VR devices (e.g., desktop or smartphone), later review recorded sessions, and provide structured textual feedback without pressure for immediate responses. By combining real-time passive attendance with asynchronous input, the approach addresses meeting fatigue and enhances inclusivity, particularly benefiting introverted users or those unable to participate actively in synchronous meetings.",
     authors: "<b>Jungwoo Rhee</b>",
@@ -126,7 +147,7 @@ const PUBLICATIONS = [
     img: "",
     venue: "HCI Korea 2024",
     type: "paper",
-    oral: false,
+    reviewed: true,
     title: "How Professionals Use Visual Asset Management: An Exploration through Interviews",
     abstract: "Visual Asset Management (VAM) is imperative for designers facing challenges in organization and productivity. This paper explores the VAM landscape and its challenges through user interviews and literature analysis. We propose three design opportunities — Visual Roadmap History, Streamlined Collaboration Tools, and Efficient Capacity Management — offering practical solutions for designers, with implications for the broader design process and for bridging gaps in visual asset management workflows and communication.",
     authors: "<b>Jungwoo Rhee</b>, Andrea Bianchi",
@@ -137,7 +158,8 @@ const PUBLICATIONS = [
 ];
 
 const NEWS = [
-  { date: "2026.09", html: "Co-organized the <a href='https://xr.prototyping.id/' target='_blank' rel='noopener'>NRF-ASPIRE Workshop 2026: Listening Through the Body</a> at KAIST Dogok Campus, Seoul, and served as Web Chair.", isNew: true },
+  { date: "2026.10", html: "Full paper accepted to <a href='https://dl.acm.org/journal/pacmhci/tracks/iss' target='_blank' rel='noopener'>ISS 2026</a> (PACM HCI): <b>AdapTest</b>, an in-situ tool for authoring and testing environmentally responsive XR user interfaces.", isNew: true },
+  { date: "2026.09", html: "Co-organized the <a href='https://xr.prototyping.id/' target='_blank' rel='noopener'>NRF-ASPIRE Workshop 2026: Listening Through the Body</a> at KAIST Dogok Campus, Seoul, and served as Web Chair." },
   { date: "2026.06", html: "Visiting <a href='https://www.kth.se/' target='_blank' rel='noopener'>KTH Royal Institute of Technology</a> in Stockholm, Sweden for a workshop on our joint grant project." },
   { date: "2026.04", html: "Awarded Best Paper <b>Honorable Mention</b> (top ~5%) at CHI 2026 for <b>Wire Your Way</b>." },
   { date: "2026.04", html: "Presented <b>2 papers and a poster</b>, and joined a workshop at CHI 2026: <a href='https://doi.org/10.1145/3772318.3791371' target='_blank' rel='noopener'>Wire Your Way</a>, <a href='https://doi.org/10.1145/3772318.3791662' target='_blank' rel='noopener'>Gaze and Speech in Multimodal Human-Computer Interaction</a>, <a href='https://doi.org/10.1145/3772363.3798682' target='_blank' rel='noopener'>One Is Not Enough</a>, and <a href='https://genuimeetshci.github.io/chi26-workshop/proposals/design_space_genui_qualitative_inquiry_chi26_workshop.pdf' target='_blank' rel='noopener'>Deepening, Redirecting, Expanding</a>." },
@@ -156,7 +178,6 @@ const NEWS = [
 ];
 
 const UNDER_REVIEW = [
-  { role: "First author", topic: "In-situ authoring and testing of environmentally responsive XR user interfaces (distance, lighting, occlusion)" },
   { role: "Second author", topic: "Attention-aware code reading support with personalized feedback grounded in expert gaze and code complexity" },
   { role: "Co-author", topic: "Contact-adaptive haptic interface with co-located thermal and vibrotactile feedback from a single gel membrane" }
 ];
