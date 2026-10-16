@@ -18,10 +18,15 @@ const FILTER_LABELS = { selected:'selected', all:'total', first:'first-author', 
 
 function pad2(n){ return String(n).padStart(2, '0'); }
 
+// Umami custom events (no-op if the script is blocked)
+function track(name, data){ if (window.umami) umami.track(name, data); }
+
 function pubActions(p){
   let links = '';
-  if (p.pdf) links += '<a href="' + p.pdf + '" target="_blank" rel="noopener noreferrer">[PDF]</a>';
-  if (p.doi) links += '<a href="' + p.doi + '" target="_blank" rel="noopener noreferrer">[DOI]</a>';
+  // data-umami-event: Umami counts clicks per paper as custom events
+  var ev = ' data-umami-event-title="' + p.title.replace(/"/g, '') + '"';
+  if (p.pdf) links += '<a href="' + p.pdf + '" target="_blank" rel="noopener noreferrer" data-umami-event="pdf"' + ev + '>[PDF]</a>';
+  if (p.doi) links += '<a href="' + p.doi + '" target="_blank" rel="noopener noreferrer" data-umami-event="doi"' + ev + '>[DOI]</a>';
   return links ? '<div class="pub-act">' + links + '</div>' : '<div class="pub-act"></div>';
 }
 
@@ -78,6 +83,7 @@ document.querySelectorAll('#filters button').forEach(b => {
     });
     b.classList.add('active'); b.setAttribute('aria-pressed', 'true');
     pubFilter = b.dataset.filter;
+    track('filter', { filter: pubFilter });
     renderPubs();
   });
 });
@@ -92,6 +98,7 @@ pubsEl.addEventListener('click', function (e) {
   if (!toggle || !panel) return;
   var willOpen = panel.hasAttribute('hidden');
   if (willOpen) panel.removeAttribute('hidden'); else panel.setAttribute('hidden', '');
+  if (willOpen) track('expand', { title: toggle.textContent.replace(/[+−]$/, '').trim() });
   toggle.setAttribute('aria-expanded', String(willOpen));
   var exp = toggle.querySelector('.exp'); if (exp) exp.textContent = willOpen ? '−' : '+';
 });
@@ -103,6 +110,7 @@ function openLightbox(img){
   lightboxImg.src = img.dataset.full || img.src;
   lightboxImg.alt = img.alt;
   lightbox.showModal();
+  track('figure', { title: img.alt.replace(/^Figure from /, '').replace(/[“”]/g, '') });
 }
 pubsEl.addEventListener('click', function (e) {
   var img = e.target.closest('.pub-big');
@@ -116,6 +124,9 @@ lightbox.addEventListener('close', function () { lightboxImg.src = ''; });
 
 // ---- news + pagination ----
 const newsListEl = document.getElementById('news-list');
+newsListEl.addEventListener('click', function (e) {
+  var a = e.target.closest('a'); if (a) track('news-link', { url: a.href });
+});
 const newsCount = document.getElementById('newscount');
 const pageInd = document.getElementById('news-pageind');
 const prevBtn = document.getElementById('news-prev');
