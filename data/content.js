@@ -53,12 +53,11 @@ const PUBLICATIONS = [
     type: "paper",
     reviewed: true,
     title: "AdapTest: Supporting Designers in Authoring and Evaluating Environmentally Responsive User Interfaces for Extended Reality",
-    note: "Preprint coming soon.",
     abstract: "Extended Reality (XR) headsets increasingly host familiar 2D user interfaces as windows floating in physical environments. However, their usability depends on environmental conditions that designers cannot fully control. Current design workflows often separate how a variant is designed from how it actually looks in the target environment. We present AdapTest, an in-situ authoring and testing tool that lets designers select interface elements, define when and how they change, compare the resulting variations, and test their activation without coding. Based on prior research and a formative study with 12 interface designers, the system targets three key environmental variables: distance, lighting, and occlusion. We evaluated AdapTest against a desktop design and in-headset preview workflow in a within-subjects study with 12 designers. Compared with the baseline, designers accounted for a wider range of environmental factors, addressed more overlapping conditions, and repeatedly tested and revised their designs in place; there were no significant differences in workload or usability despite longer sessions. Our work contributes an integrated, designer-centered approach to adapting, comparing, and validating environmentally responsive XR user interfaces.",
     authors: "<b>Jungwoo Rhee</b>, Guhn Lee, Yumin Jung, Mustafa Doga Dogan, Justin Moon, Andrea Bianchi",
     selected: true,
     firstAuthor: true,
-    pdf: "",
+    pdf: "https://arxiv.org/abs/2610.21386",
     doi: ""
   },
   {
@@ -158,7 +157,7 @@ const PUBLICATIONS = [
 ];
 
 const NEWS = [
-  { date: "2026.10", html: "Full paper accepted to <a href='https://dl.acm.org/journal/pacmhci/tracks/iss' target='_blank' rel='noopener'>ISS 2026</a> (PACM HCI): <b>AdapTest</b>, an in-situ tool for authoring and testing environmentally responsive XR user interfaces.", isNew: true },
+  { date: "2026.10", html: "Full paper accepted to <a href='https://dl.acm.org/journal/pacmhci/tracks/iss' target='_blank' rel='noopener'>ISS 2026</a> (PACM HCI): <a href='https://arxiv.org/abs/2610.21386' target='_blank' rel='noopener'>AdapTest</a>, an in-situ tool for authoring and testing environmentally responsive XR user interfaces.", isNew: true },
   { date: "2026.09", html: "Co-organized the <a href='https://xr.prototyping.id/' target='_blank' rel='noopener'>NRF-ASPIRE Workshop 2026: Listening Through the Body</a> at KAIST Dogok Campus, Seoul, and served as Web Chair." },
   { date: "2026.06", html: "Visiting <a href='https://www.kth.se/' target='_blank' rel='noopener'>KTH Royal Institute of Technology</a> in Stockholm, Sweden for a workshop on our joint grant project." },
   { date: "2026.04", html: "Awarded Best Paper <b>Honorable Mention</b> (top ~5%) at CHI 2026 for <b>Wire Your Way</b>." },
