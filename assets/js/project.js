@@ -22,11 +22,11 @@
     (p.award ? '<span class="award">' + p.award + '</span>' : '') +
     '<h1 class="proj-title">' + p.title + '</h1>' +
     '<p class="authors">' + p.authors + '</p>' +
-    (links ? '<div class="pub-act">' + links + '</div>' : '') +
     (p.video
       ? '<div class="video"><iframe src="https://www.youtube-nocookie.com/embed/' + p.video + '" title="Video: ' + safeTitle + '" loading="lazy" ' +
         'allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>'
       : '') +
+    (links ? '<div class="pub-act">' + links + '</div>' : '') +
     '<section aria-labelledby="abs-h">' +
       '<div class="sec-head"><h2 id="abs-h">Abstract</h2><span class="rule" aria-hidden="true"></span></div>' +
       (fig ? '<img class="pub-big" src="' + src(fig) + '" alt="Figure from “' + safeTitle + '”" loading="lazy" decoding="async"' +

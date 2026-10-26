@@ -25,7 +25,6 @@ function pubActions(p){
   let links = '';
   // data-umami-event: Umami counts clicks per paper as custom events
   var ev = ' data-umami-event-title="' + p.title.replace(/"/g, '') + '"';
-  if (p.slug) links += '<a href="/' + p.slug + '/" data-umami-event="project"' + ev + '>[VIDEO]</a>';
   if (p.pdf) links += '<a href="' + p.pdf + '" target="_blank" rel="noopener noreferrer" data-umami-event="pdf"' + ev + '>[PDF]</a>';
   if (p.doi) links += '<a href="' + p.doi + '" target="_blank" rel="noopener noreferrer" data-umami-event="doi"' + ev + '>[DOI]</a>';
   return links ? '<div class="pub-act">' + links + '</div>' : '<div class="pub-act"></div>';
