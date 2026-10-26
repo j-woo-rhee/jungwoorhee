@@ -17,6 +17,9 @@
      selected   true to show under the default "selected" tab
      pdf        URL or "files/mypaper.pdf"  — leave "" to hide the [PDF] button
      doi        DOI URL                     — leave "" to hide the [DOI] button
+     slug       project page URL, e.g. "adaptest" -> jungwoorhee.com/adaptest/ (optional).
+                Also copy adaptest/index.html to <slug>/index.html and change its title/meta.
+     video      YouTube video ID shown on the project page, e.g. "imBZi7NmE6o" (optional)
 
    NEWS fields:
      date   "YYYY.MM"
@@ -58,7 +61,9 @@ const PUBLICATIONS = [
     selected: true,
     firstAuthor: true,
     pdf: "https://arxiv.org/abs/2610.21386",
-    doi: ""
+    doi: "",
+    slug: "adaptest",
+    video: "imBZi7NmE6o"
   },
   {
     img: "images/chi2026-wireyourway.png",
@@ -78,7 +83,9 @@ const PUBLICATIONS = [
     selected: true,
     firstAuthor: true,
     pdf: "https://dl.acm.org/doi/pdf/10.1145/3772318.3791371",
-    doi: "https://doi.org/10.1145/3772318.3791371"
+    doi: "https://doi.org/10.1145/3772318.3791371",
+    slug: "wire-your-way",
+    video: "g0KKqrsPBd8"
   },
   {
     img: "images/chi2026-gazeandspeech.png",
@@ -97,7 +104,9 @@ const PUBLICATIONS = [
     selected: true,
     firstAuthor: false,
     pdf: "https://dl.acm.org/doi/pdf/10.1145/3772318.3791662",
-    doi: "https://doi.org/10.1145/3772318.3791662"
+    doi: "https://doi.org/10.1145/3772318.3791662",
+    slug: "gaze-and-speech",
+    video: "BszIdB7pPRs"
   },
   {
     img: "images/chiea26-oneisnotenough.png",

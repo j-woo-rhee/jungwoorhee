@@ -141,6 +141,11 @@ a{ color:inherit; }
 }
 .contact a:hover{ color:var(--link); }
 .contact a .ar{ color:var(--mut); }
+/* CV as a visible button: 0 clicks as a plain link */
+.contact a.cv-btn{ margin-left:14px; padding:3px 10px; border:1px solid var(--acc); border-radius:2px; color:var(--acc); }
+.contact a.cv-btn::before{ display:none; }
+.contact a.cv-btn:hover{ background:var(--acc); color:var(--bg, #fff); }
+.contact a.cv-btn:hover .ar{ color:inherit; }
 
 
 /* ---------- section header ---------- */
@@ -197,6 +202,8 @@ a{ color:inherit; }
 .ptitle-btn .exp{ flex-shrink:0; color:var(--mut); font-weight:400; }
 .ptitle-btn:hover .exp{ color:var(--acc); }
 .thumb.clickable{ cursor:pointer; }
+a.ptitle-btn{ text-decoration:none; }
+a.thumb{ display:block; }
 .pub-panel{ padding:0 0 18px 86px; }
 .pub-panel[hidden]{ display:none; }
 .pub-big{ display:block; max-width:320px; width:100%; height:auto; border:1px solid var(--line); margin:0 0 12px; cursor:zoom-in; }
@@ -272,6 +279,17 @@ a{ color:inherit; }
 }
 .foot .sync{ color:var(--mut); }
 
+/* ---------- project page ---------- */
+.back{ font-size:12.5px; color:var(--mut); text-decoration:none; }
+.back:hover{ color:var(--link); }
+.proj-title{ font-size:24px; font-weight:600; line-height:1.35; letter-spacing:-.01em; margin:0 0 10px; }
+.proj .authors{ font-size:12.5px; margin-bottom:14px; }
+.proj .pub-act{ padding:0; margin-bottom:26px; }
+.video{ position:relative; aspect-ratio:16/9; border:1px solid var(--line); background:var(--thumb-b); margin:0 0 30px; }
+.video iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
+.proj .pub-big{ max-width:100%; margin-bottom:18px; cursor:default; }
+.proj .pub-abstract{ font-size:13.5px; color:var(--ink); }
+
 /* ---------- responsive ---------- */
 @media (max-width:720px){
   .page{ padding:36px 24px 56px; }
@@ -286,6 +304,12 @@ a{ color:inherit; }
   .news-list{ min-height:410px; }
   .pub-act{ grid-column:1 / -1; padding-top:10px; }
   .pub-panel{ padding-left:0; }
+  /* wrapped rows: drop the | dividers (they'd start a line) and add row spacing */
+  .contact, .filters{ gap:10px 20px; }
+  .contact a, .filters button, .filters button:first-child{ padding:2px 0; }
+  .contact a + a::before, .filters button + button::before{ display:none; }
+  .contact a.cv-btn{ margin-left:0; padding:3px 10px; }
+  .proj-title{ font-size:19px; }
   .news-item,
   .service-item,
   #review-list .service-item{ grid-template-columns:1fr; gap:2px; }

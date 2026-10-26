@@ -25,6 +25,7 @@ function pubActions(p){
   let links = '';
   // data-umami-event: Umami counts clicks per paper as custom events
   var ev = ' data-umami-event-title="' + p.title.replace(/"/g, '') + '"';
+  if (p.slug) links += '<a href="/' + p.slug + '/" data-umami-event="project"' + ev + '>[VIDEO]</a>';
   if (p.pdf) links += '<a href="' + p.pdf + '" target="_blank" rel="noopener noreferrer" data-umami-event="pdf"' + ev + '>[PDF]</a>';
   if (p.doi) links += '<a href="' + p.doi + '" target="_blank" rel="noopener noreferrer" data-umami-event="doi"' + ev + '>[DOI]</a>';
   return links ? '<div class="pub-act">' + links + '</div>' : '<div class="pub-act"></div>';
@@ -41,9 +42,14 @@ function matchFilter(p){
 function renderPubs(){
   const list = PUBLICATIONS.filter(matchFilter);
   pubsEl.innerHTML = list.map(function (p, i) {
-    var has = !!p.abstract;
+    // papers with a project page link there instead of expanding inline
+    var page = p.slug ? '/' + p.slug + '/' : '';
+    var has = !!p.abstract && !page;
     var pid = 'pp' + i;
-    var titleEl = has
+    var titleEl = page
+      ? '<a class="ptitle-btn" href="' + page + '" data-umami-event="project" data-umami-event-title="' + p.title.replace(/"/g, '') + '">' +
+          '<span>' + p.title + '</span><span class="exp" aria-hidden="true">→</span></a>'
+      : has
       ? '<button class="ptitle-btn" aria-expanded="false" aria-controls="' + pid + '">' +
           '<span>' + p.title + '</span><span class="exp" aria-hidden="true">+</span></button>'
       : '<p class="ptitle">' + p.title + '</p>';
@@ -61,7 +67,8 @@ function renderPubs(){
       : '';
     return '<div class="pub-entry">' +
       '<article class="pub">' +
-        '<div class="thumb' + (has ? ' clickable' : '') + '">' + (thumbSrc ? '<img src="' + thumbSrc + '" alt=""' + thumbSize + ' loading="lazy" decoding="async" />' : '') + '</div>' +
+        (page ? '<a class="thumb" href="' + page + '" tabindex="-1" aria-hidden="true">' : '<div class="thumb' + (has ? ' clickable' : '') + '">') +
+          (thumbSrc ? '<img src="' + thumbSrc + '" alt=""' + thumbSize + ' loading="lazy" decoding="async" />' : '') + (page ? '</a>' : '</div>') +
         '<div class="pub-main">' +
           '<span class="venue' + (p.reviewed ? ' reviewed' : '') + '">' + p.venue + '</span>' +
           (p.award ? '<span class="award">' + p.award + '</span>' : '') +

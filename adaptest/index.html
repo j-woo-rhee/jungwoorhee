@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- To add a project: copy this folder to /<slug>/, then change the title, description and URLs below. -->
+  <title>AdapTest (ISS 2026) — Jungwoo Rhee</title>
+  <meta name="description" content="AdapTest: an in-situ tool that lets designers author and test environmentally responsive XR user interfaces without coding. ACM ISS 2026 (PACM HCI)." />
+  <meta name="author" content="Jungwoo Rhee" />
+  <link rel="canonical" href="https://jungwoorhee.com/adaptest/" />
+
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <meta name="theme-color" content="#F8F8F9" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0E0E10" media="(prefers-color-scheme: dark)" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://jungwoorhee.com/adaptest/" />
+  <meta property="og:title" content="AdapTest (ISS 2026) — Jungwoo Rhee" />
+  <meta property="og:description" content="Authoring and evaluating environmentally responsive user interfaces for XR. Video, paper and abstract." />
+  <meta property="og:image" content="https://jungwoorhee.com/images/adaptest.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem('theme');
+        var sys = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', saved || sys);
+      } catch (e) {}
+    })();
+  </script>
+
+  <link rel="preload" href="/assets/fonts/commit-mono/CommitMono-Variable.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="/assets/css/styles.css" />
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="a6732fc0-bd2c-4f30-a960-6c73e35d17d9"></script>
+</head>
+<body data-slug="adaptest">
+  <a class="skip" href="#main">Skip to main content</a>
+
+  <div class="page">
+    <div class="utility" style="justify-content:space-between; align-items:center;">
+      <a class="back" href="/" data-umami-event="back-home">← Jungwoo Rhee</a>
+      <button class="theme-switch" id="theme-toggle" type="button" role="switch" aria-checked="false" aria-label="Dark mode">
+        <span class="knob" aria-hidden="true"></span>
+      </button>
+    </div>
+
+    <main id="main" class="proj"></main>
+
+    <footer class="foot">
+      <span>© 2026 Jungwoo Rhee</span>
+      <a class="back" href="/">jungwoorhee.com</a>
+    </footer>
+  </div>
+
+  <script src="/data/content.js"></script>
+  <script src="/assets/js/project.js"></script>
+</body>
+</html>
