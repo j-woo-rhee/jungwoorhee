@@ -92,6 +92,7 @@ a{ color:inherit; }
 }
 .tagline a{ color:var(--link); text-decoration:none; }
 .tagline a:hover{ text-decoration:underline; }
+.tagline b{ font-weight:600; background:linear-gradient(transparent 56%, var(--hl) 56%); padding:0 1px; }
 .status{
   display:flex; align-items:center; gap:8px; flex-wrap:wrap;
   font-size:12.5px; color:var(--mut); margin-bottom:0;
@@ -192,6 +193,10 @@ a{ color:inherit; }
   background:var(--acc); color:#fff; border:1px solid var(--acc); border-radius:4px;
   padding:1.5px 7px; margin-left:6px; margin-bottom:8px;
 }
+/* center badge text on the capitals, not the font's line box (fallback: padding above) */
+@supports (text-box: trim-both cap alphabetic){
+  .venue, .award{ display:inline-flex; align-items:center; height:18px; padding-block:0; text-box:trim-both cap alphabetic; }
+}
 .ptitle{ font-size:14px; font-weight:500; line-height:1.4; margin:0 0 5px; }
 .ptitle-btn{
   display:flex; justify-content:space-between; align-items:flex-start; gap:14px; width:100%;
@@ -259,7 +264,7 @@ a.thumb{ display:block; }
 #review-list .service-item > span{ color:var(--mut); font-weight:400; font-size:12px; }
 .patent-list p > b{ display:block; font-weight:600; color:var(--ink); }
 .patent-list .authors{ display:block; margin-top:2px; }
-.patent-list .venue{ display:block; width:fit-content; }
+.patent-list .venue{ display:flex; width:fit-content; }
 .service-item{
   display:grid; grid-template-columns:140px 1fr; gap:20px;
   padding:11px 0; border-bottom:1px solid var(--line2);
