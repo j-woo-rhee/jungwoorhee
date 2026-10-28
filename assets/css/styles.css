@@ -197,6 +197,8 @@ a{ color:inherit; }
 @supports (text-box: trim-both cap alphabetic){
   .venue, .award{ display:inline-flex; align-items:center; height:18px; padding-block:0; text-box:trim-both cap alphabetic; }
 }
+/* own layer = border and text snap to the same pixel, even at fractional page offsets */
+.venue, .award{ will-change:transform; }
 .ptitle{ font-size:14px; font-weight:500; line-height:1.4; margin:0 0 5px; }
 .ptitle-btn{
   display:flex; justify-content:space-between; align-items:flex-start; gap:14px; width:100%;
