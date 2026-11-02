@@ -27,11 +27,7 @@
   status = 200
   force = true
 
-[[redirects]]
-  from = "/u/api/send"
-  to = "https://gateway.umami.is/api/send"
-  status = 200
-  force = true
+# /u/api/send is handled by netlify/edge-functions/umami-send.ts (forwards the real visitor IP)
 
 [[redirects]]
   from = "/*"
