@@ -3,7 +3,7 @@
    Newest entries first. After editing, just redeploy (or refresh locally).
 
    PUBLICATION fields:
-     img        fallback/original image path, e.g. "images/mypaper.png" ("" = no image)
+     img        full-size image for zoom + project page, web-sized (<=1800px), e.g. "images/mypaper-large.webp" ("" = no image)
      imgThumb   optimized thumbnail image path shown in the list (optional)
      imgPreview optimized preview image path shown when expanded (optional)
      imgThumbWidth / imgThumbHeight and imgPreviewWidth / imgPreviewHeight set intrinsic sizes
@@ -45,7 +45,7 @@
 
 const PUBLICATIONS = [
   {
-    img: "images/adaptest.png",
+    img: "images/adaptest-large.webp",
     imgThumb: "images/adaptest-thumb.webp",
     imgThumbWidth: 160,
     imgThumbHeight: 43,
@@ -66,7 +66,7 @@ const PUBLICATIONS = [
     video: "imBZi7NmE6o"
   },
   {
-    img: "images/chi2026-wireyourway.png",
+    img: "images/chi2026-wireyourway-large.webp",
     imgThumb: "images/chi2026-wireyourway-thumb.webp",
     imgThumbWidth: 160,
     imgThumbHeight: 52,
@@ -88,7 +88,7 @@ const PUBLICATIONS = [
     video: "g0KKqrsPBd8"
   },
   {
-    img: "images/chi2026-gazeandspeech.png",
+    img: "images/chi2026-gazeandspeech-large.webp",
     imgThumb: "images/chi2026-gazeandspeech-thumb.webp",
     imgThumbWidth: 160,
     imgThumbHeight: 69,
@@ -109,7 +109,7 @@ const PUBLICATIONS = [
     video: "BszIdB7pPRs"
   },
   {
-    img: "images/chiea26-oneisnotenough.png",
+    img: "images/chiea26-oneisnotenough-large.webp",
     imgThumb: "images/chiea26-oneisnotenough-thumb.webp",
     imgThumbWidth: 160,
     imgThumbHeight: 226,
