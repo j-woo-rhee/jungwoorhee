@@ -168,8 +168,8 @@ const PUBLICATIONS = [
 const NEWS = [
   // TORINO-NEWS: uncommented by a scheduled routine on 2026-11-16
   // { date: "2026.11", html: "Heading to Torino, Italy for <a href='https://iss.acm.org/2026' target='_blank' rel='noopener'>ISS 2026</a> to present <a href='https://arxiv.org/abs/2610.21386' target='_blank' rel='noopener'>AdapTest</a> on Wed, Nov 25 in <a href='https://programs.sigchi.org/iss/2026/program/content/278578' target='_blank' rel='noopener'>Session 5: LLMs, Agents &amp; Authoring Tools</a>. Come say hi!", isNew: true },
-  { date: "2026.11", html: "Invited to serve as an <b>Associate Chair (AC)</b> for <a href='https://dis.acm.org/' target='_blank' rel='noopener'>DIS 2027</a>.", isNew: true },
-  { date: "2026.10", html: "Full paper accepted to <a href='https://dl.acm.org/journal/pacmhci/tracks/iss' target='_blank' rel='noopener'>ISS 2026</a> (PACM HCI): <a href='https://arxiv.org/abs/2610.21386' target='_blank' rel='noopener'>AdapTest</a>, an in-situ tool for authoring and testing environmentally responsive XR user interfaces.", isNew: true },
+  { date: "2026.11", html: "Invited to serve as an <b>Associate Chair (AC)</b> for <a href='https://dis.acm.org/2027/' target='_blank' rel='noopener'>DIS 2027</a>.", isNew: true },
+  { date: "2026.10", html: "Full paper accepted to <a href='https://iss.acm.org/2026/' target='_blank' rel='noopener'>ISS 2026</a> (PACM HCI): <a href='https://arxiv.org/abs/2610.21386' target='_blank' rel='noopener'>AdapTest</a>, an in-situ tool for authoring and testing environmentally responsive XR user interfaces.", isNew: true },
   { date: "2026.09", html: "Co-organized the <a href='https://xr.prototyping.id/' target='_blank' rel='noopener'>NRF-ASPIRE Workshop 2026: Listening Through the Body</a> at KAIST Dogok Campus, Seoul, and served as Web Chair." },
   { date: "2026.06", html: "Visiting <a href='https://www.kth.se/' target='_blank' rel='noopener'>KTH Royal Institute of Technology</a> in Stockholm, Sweden for a workshop on our joint grant project." },
   { date: "2026.04", html: "Awarded Best Paper <b>Honorable Mention</b> (top ~5%) at CHI 2026 for <b>Wire Your Way</b>." },

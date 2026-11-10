@@ -12,8 +12,8 @@
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-  <meta name="theme-color" content="#F8F8F9" media="(prefers-color-scheme: light)" />
-  <meta name="theme-color" content="#0E0E10" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#111212" media="(prefers-color-scheme: dark)" />
 
   <!-- Open Graph / social cards -->
   <meta property="og:type" content="website" />
@@ -39,7 +39,8 @@
     })();
   </script>
 
-  <link rel="preload" href="/assets/fonts/commit-mono/CommitMono-Variable.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/assets/fonts/satoshi/Satoshi-Regular.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/assets/fonts/satoshi/Satoshi-Medium.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="assets/css/styles.css" />
 
 
@@ -70,130 +71,109 @@
 <body>
   <a class="skip" href="#main">Skip to main content</a>
 
-  <div class="page">
+  <header class="top">
+    <div class="wrap">
+      <a class="mark" href="#top">Jungwoo Rhee</a>
+      <nav aria-label="Sections">
+        <ul>
+          <li><a href="#publications">Publications</a></li>
+          <li><a href="#news">News</a></li>
+          <li><a href="#service">Service</a></li>
+          <li><button class="theme" id="theme-toggle" type="button" aria-pressed="false" aria-label="Dark mode">Dark</button></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-    <div class="utility">
-      <button class="theme-switch" id="theme-toggle" type="button" role="switch" aria-checked="false" aria-label="Dark mode">
-        <span class="knob" aria-hidden="true"></span>
-      </button>
+  <main id="main" class="wrap">
+
+    <div class="hero" id="top">
+      <div class="intro">
+        <h1>Jungwoo Rhee</h1>
+        <p class="tagline">HCI researcher building <b>XR and AI interfaces grounded in the physical world</b>, so people and systems can <b>refer to the same things.</b></p>
+        <!-- contact -->
+        <nav class="pills" aria-label="Contact and profiles">
+          <a class="pill" href="mailto:jwoorhee@kaist.ac.kr" data-umami-event="email">Email</a>
+          <a class="pill" href="https://scholar.google.com/citations?user=NTGZ8FMAAAAJ&hl=en" target="_blank" rel="noopener noreferrer" data-umami-event="scholar">Google Scholar</a>
+          <a class="pill" href="https://www.linkedin.com/in/jungwoo-rhee/" target="_blank" rel="noopener noreferrer" data-umami-event="linkedin">LinkedIn</a>
+          <a class="pill" href="files/jungwoorhee_cv_nov2026.pdf" download data-umami-event="cv-download">CV&nbsp;↓</a>
+        </nav>
+      </div>
+      <p class="status mono"><span class="dot" aria-hidden="true"></span>Currently:<br><span id="loc">Daejeon, KR</span><br><span id="clock" aria-hidden="true">KST</span></p>
+      <div class="portrait">
+        <picture>
+          <source srcset="images/portrait-336.webp 1x, images/portrait-672.webp 2x" type="image/webp" />
+          <img src="images/portrait.jpg" alt="Portrait of Jungwoo Rhee" width="336" height="649" fetchpriority="high" decoding="async" />
+        </picture>
+      </div>
     </div>
 
-    <!-- masthead -->
-    <header class="masthead">
-      <div>
-        <h1 class="name">Jungwoo Rhee<span class="dot" aria-hidden="true">.</span></h1>
-        <!-- contact -->
-        <nav class="contact" aria-label="Contact and profiles">
-          <a href="mailto:jwoorhee@kaist.ac.kr" data-umami-event="email">jwoorhee@kaist.ac.kr</a>
-          <a href="https://scholar.google.com/citations?user=NTGZ8FMAAAAJ&hl=en" target="_blank" rel="noopener noreferrer" data-umami-event="scholar">google&nbsp;scholar</a>
-          <a href="https://www.linkedin.com/in/jungwoo-rhee/" target="_blank" rel="noopener noreferrer" data-umami-event="linkedin">linkedin</a>
-          <a href="files/jungwoorhee_cv_nov2026.pdf" download class="cv-btn" data-umami-event="cv-download">download cv<span class="ar"> ↓</span></a>
-        </nav>
-        <p class="tagline">I'm a second-year PhD student in Industrial Design (HCI) at KAIST, advised by <a href="https://make.kaist.ac.kr/" target="_blank" rel="noopener noreferrer" data-umami-event="advisor">Prof. Andrea Bianchi</a>. I build <b>XR and AI interfaces grounded in the physical world</b>, so people and systems can refer to the same things.</p>
-        <p class="tagline"><b>Grounding conversation in physical context.</b> AI assistants and multimodal input that know which part you mean when you say “this” (<a href="/wire-your-way/">Wire Your Way</a>, <a href="/gaze-and-speech/">Gaze &amp; Speech</a>). <b>Interfaces that fit the room.</b> Tools for designing XR interfaces that respond to distance, light, and occlusion (<a href="/adaptest/">AdapTest</a>).</p>
-        <p class="tagline">Before my PhD, I did an MSc in Industrial Design at KAIST and a BFA in Spatial Design at Kookmin University.</p>
-        <p class="status">
-          <span class="led" aria-hidden="true"></span>
-          <span>Currently: <span id="loc">Daejeon, KR</span></span>
-          <span aria-hidden="true">·</span>
-          <span class="time" id="clock" aria-hidden="true">09:41 KST</span>
-          <span class="cursor" aria-hidden="true"></span>
-        </p>
+    <section class="sec" aria-labelledby="about-h">
+      <header><h2 class="label" id="about-h">About</h2></header>
+      <div class="prose">
+        <p>I'm a second-year PhD student in Industrial Design (HCI) at KAIST, advised by <a href="https://make.kaist.ac.kr/" target="_blank" rel="noopener noreferrer" data-umami-event="advisor">Prof. Andrea Bianchi</a>. I build <b>XR and AI interfaces grounded in the physical world</b>, so people and systems can refer to the same things.</p>
+        <p><b>Grounding conversation in physical context.</b> AI assistants and multimodal input that know which part you mean when you say “this” (<a href="/wire-your-way/">Wire Your Way</a>, <a href="/gaze-and-speech/">Gaze &amp; Speech</a>). <b>Interfaces that fit the room.</b> Tools for designing XR interfaces that respond to distance, light, and occlusion (<a href="/adaptest/">AdapTest</a>).</p>
+        <p>Before my PhD, I did an MSc in Industrial Design at KAIST and a BFA in Spatial Design at Kookmin University.</p>
       </div>
-      <div class="idcard">
-        <div class="portrait no-photo" id="portrait">
-          <picture>
-            <source srcset="images/portrait-336.webp 1x, images/portrait-672.webp 2x" type="image/webp" />
-            <img src="images/portrait.jpg" alt="Portrait of Jungwoo Rhee" width="336" height="649" fetchpriority="high" decoding="async"
-                 onload="document.getElementById('portrait').classList.remove('no-photo')"
-                 onerror="this.remove()" />
-          </picture>
-          <span class="ph">[ portrait ]</span>
-        </div>
-      </div>
-    </header>
+    </section>
 
-
-    <main id="main">
-
-      <!-- publications -->
-      <section aria-labelledby="pub-h">
-        <div class="sec-head">
-          <h2 id="pub-h">Publications</h2>
-          <span class="rule" aria-hidden="true"></span>
-          <span class="count" id="pubcount"></span>
-        </div>
-
+    <!-- publications -->
+    <section class="sec" id="publications" aria-labelledby="pub-h">
+      <header>
+        <h2 class="label" id="pub-h">Publications</h2>
         <div class="filters" id="filters" role="group" aria-label="Filter publications">
-          <button class="active" data-filter="selected" aria-pressed="true">selected</button>
-          <button data-filter="all" aria-pressed="false">all</button>
-          <button data-filter="paper" aria-pressed="false">papers</button>
-          <button data-filter="pw" aria-pressed="false">posters &amp; workshops</button>
-          <button data-filter="first" aria-pressed="false">first-author</button>
+          <button type="button" data-filter="selected" aria-pressed="true">Selected</button>
+          <button type="button" data-filter="all" aria-pressed="false">All</button>
+          <button type="button" data-filter="paper" aria-pressed="false">Papers</button>
+          <button type="button" data-filter="pw" aria-pressed="false">Posters &amp; workshops</button>
+          <button type="button" data-filter="first" aria-pressed="false">First-author</button>
         </div>
+      </header>
+      <ol id="pubs" aria-live="polite"></ol>
+    </section>
 
-        <div class="pubs" id="pubs"></div>
-        <p class="noresult" id="noresult">// no entries match this filter.</p>
-      </section>
+    <section class="sec" aria-labelledby="review-h">
+      <header><h2 class="label" id="review-h">Under review</h2></header>
+      <ul class="rows" id="review-list"></ul>
+    </section>
 
-      <!-- under review -->
-      <section class="service" aria-labelledby="review-h">
-        <div class="sec-head">
-          <h2 id="review-h">Under Review</h2>
-          <span class="rule" aria-hidden="true"></span>
-          <span class="count" id="reviewcount"></span>
-        </div>
-        <div class="service-list patent-list" id="review-list"></div>
-      </section>
+    <section class="sec" aria-labelledby="patent-h">
+      <header><h2 class="label" id="patent-h">Patents</h2></header>
+      <ul class="rows" id="patent-list"></ul>
+    </section>
 
-      <!-- patents -->
-      <section class="service" aria-labelledby="patent-h">
-        <div class="sec-head">
-          <h2 id="patent-h">Patents</h2>
-          <span class="rule" aria-hidden="true"></span>
-          <span class="count" id="patentcount"></span>
-        </div>
-        <div class="service-list patent-list" id="patent-list"></div>
-      </section>
+    <!-- news -->
+    <section class="sec" id="news" aria-labelledby="news-h">
+      <header><h2 class="label" id="news-h">News</h2></header>
+      <div>
+        <ul class="rows" id="news-list" aria-live="polite"></ul>
+        <nav class="pager" id="news-pager" aria-label="News pages">
+          <button id="news-prev" type="button">← Newer</button>
+          <span class="mono" id="news-pageind"></span>
+          <button id="news-next" type="button">Older →</button>
+        </nav>
+      </div>
+    </section>
 
-      <!-- news -->
-      <section class="news" aria-labelledby="news-h">
-        <div class="sec-head">
-          <h2 id="news-h">News</h2>
-          <span class="rule" aria-hidden="true"></span>
-          <span class="count" id="newscount"></span>
-        </div>
-        <div class="news-list" id="news-list" aria-live="polite"></div>
-        <div class="news-pager" id="news-pager" role="navigation" aria-label="News pages">
-          <button id="news-prev" type="button">‹ newer</button>
-          <span class="pageind" id="news-pageind"></span>
-          <button id="news-next" type="button">older ›</button>
-        </div>
-      </section>
+    <!-- academic service -->
+    <section class="sec" id="service" aria-labelledby="service-h">
+      <header><h2 class="label" id="service-h">Academic service</h2></header>
+      <ul class="rows" id="service-list"></ul>
+    </section>
 
-      <!-- academic service -->
-      <section class="service" aria-labelledby="service-h">
-        <div class="sec-head">
-          <h2 id="service-h">Academic Service</h2>
-          <span class="rule" aria-hidden="true"></span>
-          <span class="count" id="servicecount"></span>
-        </div>
-        <div class="service-list" id="service-list"></div>
-      </section>
-
-    </main>
-
-    <footer class="foot">
+    <footer class="foot mono">
       <span>© 2026 Jungwoo Rhee</span>
-      <span class="sync">last updated 2026.11.09</span>
+      <ul>
+        <li><a href="mailto:jwoorhee@kaist.ac.kr">Email</a></li>
+        <li><a href="https://scholar.google.com/citations?user=NTGZ8FMAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">Google Scholar</a></li>
+        <li><a href="https://www.linkedin.com/in/jungwoo-rhee/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+      </ul>
+      <span>Last updated 2026.11.10</span>
     </footer>
+  </main>
 
-  </div>
-
-  <!-- figure lightbox: click any expanded figure to view full size -->
-  <dialog class="lightbox" id="lightbox" aria-label="Full-size figure">
-    <img id="lightbox-img" src="" alt="" />
-  </dialog>
+  <!-- figure viewer: opened from a publication thumbnail -->
+  <dialog class="lightbox" id="lightbox" tabindex="-1" aria-label="Full-size figure"></dialog>
 
   <!-- site content: edit data/content.js to add publications / news -->
   <script src="data/content.js"></script>

@@ -9,159 +9,153 @@ const NEWS_PER_PAGE = 5;
    RENDERING — no need to edit below.
    ========================================================================= */
 
-// ---- publications ----
-const pubsEl = document.getElementById('pubs');
-const noresult = document.getElementById('noresult');
-const pubcount = document.getElementById('pubcount');
-let pubFilter = 'selected';
-const FILTER_LABELS = { selected:'selected', all:'total', first:'first-author', paper:'papers', pw:'posters & workshops' };
-
+const $ = (id) => document.getElementById(id);
+const EXT = ' target="_blank" rel="noopener noreferrer"';
 function pad2(n){ return String(n).padStart(2, '0'); }
 
 // Umami custom events (no-op if the script is blocked)
 function track(name, data){ if (window.umami) umami.track(name, data); }
 
-function pubActions(p){
-  let links = '';
-  // data-umami-event: Umami counts clicks per paper as custom events
-  var ev = ' data-umami-event-title="' + p.title.replace(/"/g, '') + '"';
-  if (p.pdf) links += '<a href="' + p.pdf + '" target="_blank" rel="noopener noreferrer" data-umami-event="pdf"' + ev + '>[PDF]</a>';
-  if (p.doi) links += '<a href="' + p.doi + '" target="_blank" rel="noopener noreferrer" data-umami-event="doi"' + ev + '>[DOI]</a>';
-  return links ? '<div class="pub-act">' + links + '</div>' : '<div class="pub-act"></div>';
+// two-column row: mono key | text
+function row(key, text){ return '<li class="row"><p class="mono">' + key + '</p><div class="wide">' + text + '</div></li>'; }
+
+// ---- publications ----
+const pubsEl = $('pubs');
+let pubFilter = 'selected';
+
+function matchFilter(p, f){
+  if (f === 'all') return true;
+  if (f === 'selected') return p.selected;
+  if (f === 'first') return p.firstAuthor;
+  if (f === 'pw') return p.type === 'poster' || p.type === 'workshop';
+  return p.type === f;
 }
 
-function matchFilter(p){
-  if (pubFilter === 'all') return true;
-  if (pubFilter === 'selected') return p.selected;
-  if (pubFilter === 'first') return p.firstAuthor;
-  if (pubFilter === 'pw') return p.type === 'poster' || p.type === 'workshop';
-  return p.type === pubFilter;
+function outLink(href, label, event, title){
+  // data-umami-event: Umami counts clicks per paper as custom events
+  return '<a href="' + href + '"' + EXT + ' data-umami-event="' + event + '" data-umami-event-title="' + title + '">' + label + ' <span aria-hidden="true">↗</span></a>';
 }
 
 function renderPubs(){
-  const list = PUBLICATIONS.filter(matchFilter);
-  pubsEl.innerHTML = list.map(function (p, i) {
-    // papers with a project page link there instead of expanding inline
+  pubsEl.innerHTML = PUBLICATIONS.filter(function (p) { return matchFilter(p, pubFilter); }).map(function (p) {
+    var i = PUBLICATIONS.indexOf(p), t = p.title.replace(/"/g, '');
     var page = p.slug ? '/' + p.slug + '/' : '';
-    var has = !!p.abstract && !page;
-    var pid = 'pp' + i;
-    var titleEl = page
-      ? '<a class="ptitle-btn" href="' + page + '" data-umami-event="project" data-umami-event-title="' + p.title.replace(/"/g, '') + '">' +
-          '<span>' + p.title + '</span><span class="exp" aria-hidden="true">→</span></a>'
-      : has
-      ? '<button class="ptitle-btn" aria-expanded="false" aria-controls="' + pid + '">' +
-          '<span>' + p.title + '</span><span class="exp" aria-hidden="true">+</span></button>'
-      : '<p class="ptitle">' + p.title + '</p>';
-    var thumbSrc = p.imgThumb || p.img;
-    var previewSrc = p.imgPreview || p.img;
-    var thumbSize = p.imgThumbWidth && p.imgThumbHeight ? ' width="' + p.imgThumbWidth + '" height="' + p.imgThumbHeight + '"' : '';
-    var previewSize = p.imgPreviewWidth && p.imgPreviewHeight ? ' width="' + p.imgPreviewWidth + '" height="' + p.imgPreviewHeight + '"' : '';
-    var safeTitle = p.title.replace(/"/g, '');
-    var panel = has
-      ? '<div class="pub-panel" id="' + pid + '" hidden>' +
-          (previewSrc ? '<img class="pub-big" src="' + previewSrc + '" data-full="' + (p.img || previewSrc) + '" alt="Figure from “' + safeTitle + '”"' + previewSize + ' loading="lazy" decoding="async" tabindex="0" role="button" title="Click to enlarge" />' : '') +
-          (p.note ? '<p class="pub-note">' + p.note + '</p>' : '') +
-          '<p class="pub-abstract">' + p.abstract + '</p>' +
-        '</div>'
-      : '';
-    return '<div class="pub-entry">' +
-      '<article class="pub">' +
-        (page ? '<a class="thumb" href="' + page + '" tabindex="-1" aria-hidden="true">' : '<div class="thumb' + (has ? ' clickable' : '') + '">') +
-          (thumbSrc ? '<img src="' + thumbSrc + '" alt=""' + thumbSize + ' loading="lazy" decoding="async" />' : '') + (page ? '</a>' : '</div>') +
-        '<div class="pub-main">' +
-          '<span class="venue' + (p.reviewed ? ' reviewed' : '') + '">' + p.venue + '</span>' +
-          (p.award ? '<span class="award">' + p.award + '</span>' : '') +
-          titleEl +
-          '<p class="authors">' + p.authors + '</p>' +
+    var img = p.imgPreview || p.imgThumb || p.img;
+    var size = p.imgPreviewWidth ? ' width="' + p.imgPreviewWidth + '" height="' + p.imgPreviewHeight + '"' : '';
+    return '<li class="pub">' +
+      '<div>' +
+        '<p class="venue mono"><span>' + p.venue + '</span>' + (p.award ? '<span class="tag">' + p.award + '</span>' : '') + '</p>' +
+        '<h3 class="title">' + (page ? '<a href="' + page + '" data-umami-event="project" data-umami-event-title="' + t + '">' + p.title + '</a>' : p.title) + '</h3>' +
+        '<p class="authors">' + p.authors + '</p>' +
+        '<div class="pub-actions">' +
+          (p.pdf ? outLink(p.pdf, 'PDF', 'pdf', t) : '') +
+          (p.doi ? outLink(p.doi, 'DOI', 'doi', t) : '') +
+          (page ? '<a href="' + page + '" data-umami-event="project" data-umami-event-title="' + t + '">Project page <span aria-hidden="true">→</span></a>' : '') +
+          (p.abstract ? '<button type="button" aria-expanded="false" aria-controls="abs' + i + '">Abstract <span aria-hidden="true">+</span></button>' : '') +
         '</div>' +
-        pubActions(p) +
-      '</article>' + panel +
-    '</div>';
-  }).join('');
-  noresult.classList.toggle('show', list.length === 0);
-  pubcount.textContent = pad2(list.length) + ' ' + (FILTER_LABELS[pubFilter] || 'selected');
+        (p.abstract ? '<p class="abstract" id="abs' + i + '" hidden>' + (p.note ? p.note + ' ' : '') + p.abstract + '</p>' : '') +
+      '</div>' +
+      '<div class="thumb">' + (img ? '<button type="button" data-i="' + i + '" data-full="' + (p.img || img) + '" aria-label="View figure full size: ' + t + '"><img src="' + img + '" alt=""' + size + ' loading="lazy" decoding="async" /></button>' : '') + '</div>' +
+    '</li>';
+  }).join('') || '<li class="empty">No publications match this filter.</li>';
 }
 
-document.querySelectorAll('#filters button').forEach(b => {
-  b.addEventListener('click', () => {
-    document.querySelectorAll('#filters button').forEach(x => {
-      x.classList.remove('active'); x.setAttribute('aria-pressed', 'false');
+function initFilters(){
+  var btns = document.querySelectorAll('#filters button');
+  btns.forEach(function (b) {
+    var n = PUBLICATIONS.filter(function (p) { return matchFilter(p, b.dataset.filter); }).length;
+    b.insertAdjacentHTML('beforeend', '<span class="mono" aria-hidden="true">' + n + '</span>');
+    b.addEventListener('click', function () {
+      pubFilter = b.dataset.filter;
+      btns.forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+      track('filter', { filter: pubFilter });
+      renderPubs();
     });
-    b.classList.add('active'); b.setAttribute('aria-pressed', 'true');
-    pubFilter = b.dataset.filter;
-    track('filter', { filter: pubFilter });
-    renderPubs();
   });
-});
-
-// expand/collapse a publication to reveal its abstract + larger figure
-pubsEl.addEventListener('click', function (e) {
-  var trigger = e.target.closest('.ptitle-btn') || e.target.closest('.thumb.clickable');
-  if (!trigger) return;
-  var entry = trigger.closest('.pub-entry');
-  var toggle = entry && entry.querySelector('.ptitle-btn');
-  var panel = entry && entry.querySelector('.pub-panel');
-  if (!toggle || !panel) return;
-  var willOpen = panel.hasAttribute('hidden');
-  if (willOpen) panel.removeAttribute('hidden'); else panel.setAttribute('hidden', '');
-  if (willOpen) track('expand', { title: toggle.textContent.replace(/[+−]$/, '').trim() });
-  toggle.setAttribute('aria-expanded', String(willOpen));
-  var exp = toggle.querySelector('.exp'); if (exp) exp.textContent = willOpen ? '−' : '+';
-});
-
-// ---- figure lightbox (native <dialog>) ----
-const lightbox = document.getElementById('lightbox');
-const lightboxImg = document.getElementById('lightbox-img');
-function openLightbox(img){
-  lightboxImg.src = img.dataset.full || img.src;
-  lightboxImg.alt = img.alt;
-  lightbox.showModal();
-  track('figure', { title: img.alt.replace(/^Figure from /, '').replace(/[“”]/g, '') });
 }
-pubsEl.addEventListener('click', function (e) {
-  var img = e.target.closest('.pub-big');
-  if (img) openLightbox(img);
-});
-pubsEl.addEventListener('keydown', function (e) {
-  if ((e.key === 'Enter' || e.key === ' ') && e.target.classList.contains('pub-big')) { e.preventDefault(); openLightbox(e.target); }
-});
-lightbox.addEventListener('click', function () { lightbox.close(); }); // click anywhere (incl. backdrop) closes; Esc is native
-lightbox.addEventListener('close', function () { lightboxImg.src = ''; });
 
-// ---- news + pagination ----
-const newsListEl = document.getElementById('news-list');
+// ---- figure viewer (native <dialog>): paper info under the figure, prev / next through the figures listed ----
+const lightbox = $('lightbox');
+let figs = [], figAt = 0;
+
+function showFigure(k){
+  figAt = (k + figs.length) % figs.length;
+  var b = figs[figAt], p = PUBLICATIONS[b.dataset.i];
+  var img = lightbox.querySelector('img');
+  img.src = b.dataset.full;
+  img.alt = 'Figure from ' + p.title;
+  lightbox.querySelector('figure > a').href = b.dataset.full; // tap the figure to open the original, e.g. to pinch-zoom on a phone
+  lightbox.querySelector('.lb-venue').textContent = p.venue + (p.award ? ' · ' + p.award : '');
+  lightbox.querySelector('.lb-title').textContent = p.title;
+  lightbox.querySelector('.lb-authors').innerHTML = p.authors;
+  lightbox.querySelector('.lb-count').textContent = (figAt + 1) + ' / ' + figs.length;
+  track('figure', { title: p.title });
+}
+
+function openFigure(btn){
+  figs = Array.prototype.slice.call(pubsEl.querySelectorAll('button[data-full]'));
+  if (!lightbox.firstChild) lightbox.innerHTML =
+    '<figure><a href="' + btn.dataset.full + '" target="_blank" rel="noopener" aria-label="Open the original image in a new tab"><img src="' + btn.dataset.full + '" alt="" /></a>' +
+      '<figcaption><p class="mono lb-venue"></p><p class="lb-title"></p><p class="lb-authors"></p></figcaption></figure>' +
+    '<div class="lb-bar"><button type="button" data-go="-1" aria-label="Previous figure">← Prev</button><span class="mono lb-count" aria-live="polite"></span>' +
+      '<button type="button" data-go="1" aria-label="Next figure">Next →</button><button type="button" class="lb-close">Close ✕</button></div>';
+  showFigure(figs.indexOf(btn));
+  lightbox.showModal();
+  lightbox.focus(); // not the Prev button: no stray focus ring on open, arrow keys still work
+}
+
+pubsEl.addEventListener('click', function (e) {
+  var f = e.target.closest('button[data-full]');
+  if (f) { openFigure(f); return; }
+  var b = e.target.closest('button[aria-controls]'); if (!b) return;
+  var panel = $(b.getAttribute('aria-controls')), open = panel.hidden;
+  panel.hidden = !open;
+  b.setAttribute('aria-expanded', String(open));
+  b.querySelector('span').textContent = open ? '−' : '+';
+  if (open) track('expand', { title: PUBLICATIONS[b.getAttribute('aria-controls').slice(3)].title });
+});
+lightbox.addEventListener('click', function (e) {
+  var go = e.target.closest('[data-go]');
+  if (go) showFigure(figAt + Number(go.dataset.go));
+  else if (e.target === lightbox || e.target.closest('.lb-close')) lightbox.close(); // backdrop or Close; Esc is native
+});
+lightbox.addEventListener('keydown', function (e) {
+  if (e.key === 'ArrowLeft') showFigure(figAt - 1);
+  if (e.key === 'ArrowRight') showFigure(figAt + 1);
+});
+
+// ---- news: pages of NEWS_PER_PAGE that replace each other ----
+const newsListEl = $('news-list');
+const prevBtn = $('news-prev');
+const nextBtn = $('news-next');
+let newsPage = 1, totalPages = 1;
+
 newsListEl.addEventListener('click', function (e) {
   var a = e.target.closest('a'); if (a) track('news-link', { url: a.href });
 });
-const newsCount = document.getElementById('newscount');
-const pageInd = document.getElementById('news-pageind');
-const prevBtn = document.getElementById('news-prev');
-const nextBtn = document.getElementById('news-next');
-let totalPages = 1;
-let newsPage = 1;
-
-function newsItemHTML(n){
-  return '<div class="news-item">' +
-    '<time>' + n.date + '</time>' +
-    '<p>' + n.html + (n.isNew ? '<span class="new">NEW</span>' : '') + '</p>' +
-  '</div>';
-}
 
 function renderNews(){
   totalPages = Math.max(1, Math.ceil(NEWS.length / NEWS_PER_PAGE));
-  if (newsPage > totalPages) newsPage = totalPages;
-  const start = (newsPage - 1) * NEWS_PER_PAGE;
-  newsListEl.innerHTML = NEWS.slice(start, start + NEWS_PER_PAGE).map(newsItemHTML).join('');
-  pageInd.innerHTML = '<b>' + pad2(newsPage) + '</b> / ' + pad2(totalPages);
+  var start = (newsPage - 1) * NEWS_PER_PAGE;
+  newsListEl.innerHTML = NEWS.slice(start, start + NEWS_PER_PAGE).map(function (n) {
+    return row('<time>' + n.date + '</time>', n.html + (n.isNew ? '<span class="new">New</span>' : ''));
+  }).join('');
+  $('news-pageind').textContent = newsPage + ' / ' + totalPages;
   prevBtn.disabled = newsPage === 1;
   nextBtn.disabled = newsPage === totalPages;
-  newsCount.textContent = pad2(NEWS.length) + ' entries';
-  // hide pager entirely if it all fits on one page
-  document.getElementById('news-pager').style.display = totalPages === 1 ? 'none' : '';
+  $('news-pager').hidden = totalPages === 1; // hide the pager if it all fits on one page
 }
+prevBtn.addEventListener('click', function () { if (newsPage > 1) { newsPage--; renderNews(); } });
+nextBtn.addEventListener('click', function () { if (newsPage < totalPages) { newsPage++; renderNews(); } });
 
-prevBtn.addEventListener('click', () => { if (newsPage > 1){ newsPage--; renderNews(); } });
-nextBtn.addEventListener('click', () => { if (newsPage < totalPages){ newsPage++; renderNews(); } });
+// ---- under review, patents, academic service ----
+function renderLists(){
+  if (typeof UNDER_REVIEW !== 'undefined') $('review-list').innerHTML = UNDER_REVIEW.map(function (r) { return row(r.role, r.topic); }).join('');
+  if (typeof PATENTS !== 'undefined') $('patent-list').innerHTML = PATENTS.map(function (p) {
+    return row(p.country + ' ' + p.number, '<b>' + p.title + '</b><br>' + p.inventors);
+  }).join('');
+  if (typeof SERVICE !== 'undefined') $('service-list').innerHTML = SERVICE.map(function (s) { return row(s.role, s.venue); }).join('');
+}
 
 // ---- live clock (decorative, aria-hidden) ----
 function tickClock(){
@@ -169,65 +163,17 @@ function tickClock(){
   const utc = now.getTime() + now.getTimezoneOffset() * 60000;
   // Travel: show Italy during 2026-11-21 .. 2026-11-27 (ISS 2026), else Daejeon.
   const inItaly = utc >= Date.UTC(2026, 10, 21, 0, 0) && utc < Date.UTC(2026, 10, 28, 0, 0);
-  const loc = inItaly ? 'Torino & Milano, IT' : 'Daejeon, KR';
-  const offset = inItaly ? 1 : 9;          // CET vs KST
-  const label = inItaly ? 'CET' : 'KST';
-  const t = new Date(utc + offset * 3600000);
-  document.getElementById('clock').textContent = pad2(t.getHours()) + ':' + pad2(t.getMinutes()) + ' ' + label;
-  const locEl = document.getElementById('loc');
-  if (locEl) locEl.textContent = loc;
+  const t = new Date(utc + (inItaly ? 1 : 9) * 3600000); // CET vs KST
+  $('clock').textContent = pad2(t.getHours()) + ':' + pad2(t.getMinutes()) + (inItaly ? ' CET' : ' KST');
+  $('loc').textContent = inItaly ? 'Torino & Milano, IT' : 'Daejeon, KR';
 }
 
-// ---- academic service ----
-const serviceListEl = document.getElementById('service-list');
-const serviceCount = document.getElementById('servicecount');
-
-function serviceItemHTML(s){
-  return '<div class="service-item">' +
-    '<span>' + s.role + '</span>' +
-    '<p>' + s.venue + '</p>' +
-  '</div>';
-}
-
-function renderService(){
-  if (!serviceListEl || !serviceCount || typeof SERVICE === 'undefined') return;
-  serviceListEl.innerHTML = SERVICE.map(serviceItemHTML).join('');
-  serviceCount.textContent = pad2(SERVICE.length) + ' entries';
-}
-
-// ---- under review ----
-function renderUnderReview(){
-  const el = document.getElementById('review-list');
-  const cnt = document.getElementById('reviewcount');
-  if (!el || !cnt || typeof UNDER_REVIEW === 'undefined') return;
-  el.innerHTML = UNDER_REVIEW.map(function (r) {
-    return '<div class="service-item"><span>' + r.role + '</span><p>' + r.topic + '</p></div>';
-  }).join('');
-  cnt.textContent = pad2(UNDER_REVIEW.length) + ' entries';
-}
-
-// ---- patents ----
-function renderPatents(){
-  const el = document.getElementById('patent-list');
-  const cnt = document.getElementById('patentcount');
-  if (!el || !cnt || typeof PATENTS === 'undefined') return;
-  el.innerHTML = PATENTS.map(function (p) {
-    return '<div class="service-item">' +
-      '<p><span class="venue">' + p.country + ' ' + p.number + '</span><b>' + p.title + '</b><span class="authors">' + p.inventors + '</span></p>' +
-    '</div>';
-  }).join('');
-  cnt.textContent = pad2(PATENTS.length) + ' entries';
-}
-
-// ---- theme toggle ----
-const toggle = document.getElementById('theme-toggle');
-function syncToggle(){
-  const dark = document.documentElement.getAttribute('data-theme') === 'dark';
-  toggle.setAttribute('aria-checked', String(dark));
-}
-toggle.addEventListener('click', () => {
-  const dark = document.documentElement.getAttribute('data-theme') === 'dark';
-  const next = dark ? 'light' : 'dark';
+// ---- theme toggle (the inline script in <head> sets data-theme before paint) ----
+const toggle = $('theme-toggle');
+function isDark(){ return document.documentElement.getAttribute('data-theme') === 'dark'; }
+function syncToggle(){ toggle.setAttribute('aria-pressed', String(isDark())); toggle.textContent = isDark() ? 'Light' : 'Dark'; }
+toggle.addEventListener('click', function () {
+  const next = isDark() ? 'light' : 'dark';
   document.documentElement.setAttribute('data-theme', next);
   try { localStorage.setItem('theme', next); } catch (e) {}
   syncToggle();
@@ -235,17 +181,14 @@ toggle.addEventListener('click', () => {
 
 // ---- init ----
 tickClock();
-setInterval(tickClock, 1000);
+setInterval(tickClock, 30000);
 syncToggle();
 
 if (typeof PUBLICATIONS === 'undefined' || typeof NEWS === 'undefined') {
-  pubsEl.innerHTML = '';
-  noresult.textContent = '// content failed to load (data/content.js missing).';
-  noresult.classList.add('show');
+  pubsEl.innerHTML = '<li class="empty">Content failed to load (data/content.js missing).</li>';
 } else {
+  initFilters();
   renderPubs();
   renderNews();
-  renderService();
-  renderPatents();
-  renderUnderReview();
+  renderLists();
 }

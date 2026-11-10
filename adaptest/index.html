@@ -12,8 +12,8 @@
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-  <meta name="theme-color" content="#F8F8F9" media="(prefers-color-scheme: light)" />
-  <meta name="theme-color" content="#0E0E10" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#111212" media="(prefers-color-scheme: dark)" />
 
   <meta property="og:type" content="article" />
   <meta property="og:url" content="https://jungwoorhee.com/adaptest/" />
@@ -32,26 +32,27 @@
     })();
   </script>
 
-  <link rel="preload" href="/assets/fonts/commit-mono/CommitMono-Variable.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/assets/fonts/satoshi/Satoshi-Regular.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="/assets/fonts/satoshi/Satoshi-Medium.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="/assets/css/styles.css" />
   <script defer src="/u/script.js" data-host-url="/u" data-website-id="a6732fc0-bd2c-4f30-a960-6c73e35d17d9"></script>
 </head>
 <body data-slug="adaptest">
   <a class="skip" href="#main">Skip to main content</a>
 
-  <div class="page">
-    <div class="utility" style="justify-content:space-between; align-items:center;">
-      <a class="back" href="/" data-umami-event="back-home">← Jungwoo Rhee</a>
-      <button class="theme-switch" id="theme-toggle" type="button" role="switch" aria-checked="false" aria-label="Dark mode">
-        <span class="knob" aria-hidden="true"></span>
-      </button>
+  <header class="top">
+    <div class="wrap">
+      <a class="mark" href="/" data-umami-event="back-home">← Jungwoo Rhee</a>
+      <button class="theme" id="theme-toggle" type="button" aria-pressed="false" aria-label="Dark mode">Dark</button>
     </div>
+  </header>
 
+  <div class="wrap">
     <main id="main" class="proj"></main>
 
-    <footer class="foot">
+    <footer class="foot mono">
       <span>© 2026 Jungwoo Rhee</span>
-      <a class="back" href="/">jungwoorhee.com</a>
+      <ul><li><a href="/">jungwoorhee.com</a></li></ul>
     </footer>
   </div>
 
