@@ -29,6 +29,13 @@
 
 # /u/api/send is handled by netlify/edge-functions/umami-send.ts (forwards the real visitor IP)
 
+# Old CV URL (used in past applications) -> current CV
+[[redirects]]
+  from = "/files/jungwoorhee_cv_oct2026.pdf"
+  to = "/files/jungwoorhee_cv_nov2026.pdf"
+  status = 301
+  force = true
+
 [[redirects]]
   from = "/*"
   to = "/404.html"
