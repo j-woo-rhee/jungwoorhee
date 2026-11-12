@@ -36,6 +36,13 @@
   status = 301
   force = true
 
+# Legacy February CV URL found by Google Search Console
+[[redirects]]
+  from = "/files/Resume_JungwooRhee_2026_Feb.pdf"
+  to = "/files/jungwoorhee_cv_nov2026.pdf"
+  status = 301
+  force = true
+
 [[redirects]]
   from = "/*"
   to = "/404.html"
